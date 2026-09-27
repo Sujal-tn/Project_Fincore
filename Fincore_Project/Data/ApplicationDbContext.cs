@@ -269,6 +269,18 @@ namespace Fincore_Project.Data
     .HasForeignKey(x => x.VendorId)
     .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<VendorCategory>()
+    .HasOne(vc => vc.CreatedByUser)
+    .WithMany(u => u.VendorCategoriesCreated)
+    .HasForeignKey(vc => vc.CreatedBy)
+    .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<VendorCategory>()
+                .HasOne(vc => vc.ModifiedByUser)
+                .WithMany(u => u.VendorCategoriesModified)
+                .HasForeignKey(vc => vc.ModifiedBy)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
         }
         public DbSet<User> Users { get; set; }

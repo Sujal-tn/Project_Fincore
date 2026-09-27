@@ -6,56 +6,60 @@ namespace Fincore_Project.Models
     public class PurchaseOrder
     {
         [Key]
-        public int POItemId { get; set; }
-
-        [Required]
-        [ForeignKey("PurchaseOrder")]
         public int POId { get; set; }
-        public PurchaseOrder PurchaseOrder { get; set; }
 
         [Required]
-        [ForeignKey("PurchaseRequisitionItem")]
-        public int PRItemId { get; set; }
-        public PurchaseRequisitionItem PurchaseRequisitionItem { get; set; }
+        [StringLength(30)]
+        public string POCode { get; set; }
+
+        [ForeignKey("PurchaseRequisition")]
+        public int? PurchaseRequisitionId { get; set; }
+        public PurchaseRequisition PurchaseRequisition { get; set; }
 
         [Required]
-        [StringLength(40)]
-        public string ItemName { get; set; }
+        [ForeignKey("Quotation")]
+        public int QuotationId { get; set; }
+        public Quotation Quotation { get; set; }
 
-        [StringLength(500)]
-        public string ItemDescription { get; set; }
+        [ForeignKey("RequestedByUser")]
+        public int? RequestedBy { get; set; }
+        public User RequestedByUser { get; set; }
+
+        public DateTime? RequiredTillDate { get; set; }
+        public DateTime? OrderDate { get; set; }
 
         [Required]
+        [StringLength(30)]
+        public string ApprovalStatus { get; set; }
+
         [Column(TypeName = "decimal(18,2)")]
-        public decimal Quantity { get; set; }
+        public decimal Amount { get; set; }
+
+        [ForeignKey("ApprovedByUser")]
+        public int? ApprovedBy { get; set; }
+        public User ApprovedByUser { get; set; }
+
+        public byte? IsActive { get; set; }
+        public DateTime? ApprovedAt { get; set; }
+        public DateTime? CreatedAt { get; set; }
 
         [Required]
-        [StringLength(20)]
-        public string UnitOfMaterial { get; set; }
+        public DateTime ModifiedAt { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal UnitPrice { get; set; }
+        [ForeignKey("CreatedByUser")]
+        public int CreatedBy { get; set; }
+        public User CreatedByUser { get; set; }
 
         [Required]
-        [Column(TypeName = "decimal(5,2)")]
-        public decimal TaxPercentage { get; set; }
+        [ForeignKey("ModifiedByUser")]
+        public int ModifiedBy { get; set; }
+        public User ModifiedByUser { get; set; }
 
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal TaxAmount { get; set; }
-
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal LineTotal { get; set; }
-
-        [Required]
-        [StringLength(10)]
-        public string ItemStatus { get; set; }
-
+        // Navigation Properties
         public List<PurchaseOrderItem> PurchaseOrderItems { get; set; }
         public List<GRN> GRNs { get; set; }
-        public List<Asset> Assets { get; set; }
-        public List<APInvoice> APInvoices { get; set; }
+        //public List<Asset> Assets { get; set; }
+        //public List<APInvoice> APInvoices { get; set; }
     }
 }

@@ -11,15 +11,13 @@ namespace Fincore_Project.Models
         public int VendorDocumentId { get; set; }
 
         [Required]
-        public int VendorId { get; set; }
-
         [ForeignKey("Vendor")]
+        public int VendorId { get; set; }
         public Vendor Vendor { get; set; }
 
         [Required]
+        [ForeignKey("DocumentType")]
         public int DocumentTypeId { get; set; }
-
-        [ForeignKey(("DocumentType"))]
         public DocumentType DocumentType { get; set; }
 
         [Required]
@@ -35,5 +33,7 @@ namespace Fincore_Project.Models
 
         public DateTime? CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
+
+
     }
 }

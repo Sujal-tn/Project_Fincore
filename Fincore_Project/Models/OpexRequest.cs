@@ -2,9 +2,9 @@
 
 namespace Fincore_Project.Models
 {
-    public class Customer
+    public class OpexRequest
     {
         [Key]
-        public int CustomerId { get; set; }
+        public int OpexRequestId { get; set; }
     }
 }

@@ -44,6 +44,6 @@ namespace Fincore_Project.Models
 
         public DateTime? CreatedDate { get; set; }
 
-        public List<APInvoice> APInvoices { get; set; }
+        //public List<APInvoice> APInvoices { get; set; }
     }
 }
