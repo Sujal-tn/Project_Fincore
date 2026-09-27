@@ -33,5 +33,8 @@ namespace Fincore_Project.Models
 
         public List<Vendor> Vendors { get; set; }
         public List<PurchaseRequisitionItem> PurchaseRequisitionItems { get; set; }
+        
+
+
     }
 }
