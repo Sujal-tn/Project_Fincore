@@ -46,6 +46,20 @@ namespace Fincore_Project.Models
         [StringLength(25)]
         public string PAN { get; set; }
 
+        public DateTime? CreatedAt { get; set; }
+
+        [ForeignKey("CreatedByUser")]
+        public int? CreatedBy { get; set; }
+
+        public User CreatedByUser { get; set; }
+
+        public DateTime? ModifiedAt { get; set; }
+
+        [ForeignKey("ModifiedByUser")]
+        public int? ModifiedBy { get; set; }
+
+        public User ModifiedByUser { get; set; }
+
         [Required]
         public byte IsActive { get; set; }
     }

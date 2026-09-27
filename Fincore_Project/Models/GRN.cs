@@ -53,7 +53,7 @@ namespace Fincore_Project.Models
         public int CreatedBy { get; set; }
         public Employee CreatedByEmployee { get; set; }
 
-        public List<Asset> Assets { get; set; }
-        public List<APInvoice> APInvoices { get; set; }
+        //public List<Asset> Assets { get; set; }
+        //public List<APInvoice> APInvoices { get; set; }
     }
 }
