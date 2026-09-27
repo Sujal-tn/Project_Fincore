@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fincore_Project.Models
 {
     public class Customer
     {
-        public List<ARInvoice> ARInvoices { get; set; }
-        public List<Payment> Payments { get; set; }
         [Key]
         public int CustomerId { get; set; }
+        public List<ARInvoice> ARInvoices { get; set; }
+        public List<Payment> Payments { get; set; }
+       
 
         [Required]
         [StringLength(30)]
@@ -27,5 +27,9 @@ namespace Fincore_Project.Models
         [Required]
         public byte IsActive { get; set; }
 
+<<<<<<< HEAD
+=======
+     
+>>>>>>> 12ff8e30522fc63e20b37e6fd8c0be62f9bedb96
     }
 }

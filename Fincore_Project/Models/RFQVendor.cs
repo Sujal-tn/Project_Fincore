@@ -23,5 +23,7 @@ namespace Fincore_Project.Models
         [Required]
         [StringLength(20)]
         public string ResponseStatus { get; set; }
+
+
     }
 }

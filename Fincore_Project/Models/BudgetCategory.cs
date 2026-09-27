@@ -1,17 +1,21 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace Fincore_Project.Models
 {
-    public class DocumentType
+    public class BudgetCategory
     {
         [Key]
-        public int DocumentTypeId { get; set; }
+        public int BudgetCategoryId { get; set; }
 
         [Required]
         [StringLength(20)]
-        public string DocumentCategory { get; set; }
+        public string CategoryName { get; set; }
+
+        [Required]
+        [ForeignKey("Department")]
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
 
         [Required]
         public byte IsActive { get; set; }
@@ -29,8 +33,8 @@ namespace Fincore_Project.Models
         public int ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
 
-        // Navigation Properties
-       
-        public List<VendorDocument> VendorDocuments { get; set; } 
+      
+
+        public List<BudgetLine> BudgetLines { get; set; }
     }
 }

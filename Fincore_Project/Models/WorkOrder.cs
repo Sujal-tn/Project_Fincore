@@ -24,7 +24,7 @@ namespace Fincore_Project.Models
         [Required]
         [ForeignKey("OpexRequest")]
         public int OpexRequestId { get; set; }
-        //public OpexRequest OpexRequest { get; set; }
+        public OpexRequest OpexRequest { get; set; }
 
         [Required]
         [Column(TypeName = "decimal(18,2)")]
