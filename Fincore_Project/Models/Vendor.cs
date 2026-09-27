@@ -48,5 +48,11 @@ namespace Fincore_Project.Models
         [ForeignKey("ModifiedByUser")]
         public int ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
+
+        public List<Asset> Assets { get; set; }
+        public List<APInvoice> APInvoices { get; set; }
+        public List<Payment> Payments { get; set; }
+        public List<RFQVendor> RFQVendors { get; set; }
+        public List<GRN> GRNs { get; set; }
     }
 }
