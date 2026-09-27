@@ -51,8 +51,8 @@ namespace Fincore_Project.Models
         public int ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
 
-        //Navigation
 
+        //Navigation
         public List<ARInvoice> ARInvoices { get; set; }
     }
 }
