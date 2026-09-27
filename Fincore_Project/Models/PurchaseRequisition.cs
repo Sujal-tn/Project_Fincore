@@ -60,6 +60,7 @@ namespace Fincore_Project.Models
         public int ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
 
+        public List<PurchaseOrder> PurchaseOrders { get; set; } 
         public List<PurchaseRequisitionItem> PurchaseRequisitionItems { get; set; }
         public List<PurchaseOrder> PurchaseOrders { get; set; }
         public List<RFQ> RFQs { get; set; }

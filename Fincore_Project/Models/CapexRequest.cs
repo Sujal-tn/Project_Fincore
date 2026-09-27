@@ -49,5 +49,6 @@ namespace Fincore_Project.Models
         
 
         public List<Asset> Assets { get; set; }
+        
     }
 }

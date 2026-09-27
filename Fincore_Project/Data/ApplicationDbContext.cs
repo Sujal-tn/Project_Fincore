@@ -528,11 +528,18 @@ namespace Fincore_Project.Data
                     .HasForeignKey(rpm => rpm.PermissionId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(rpm => rpm.Module)
-                    .WithMany()
-                    .HasForeignKey(rpm => rpm.ModuleId)
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
+            modelBuilder.Entity<VendorCategory>()
+    .HasOne(vc => vc.CreatedByUser)
+    .WithMany(u => u.VendorCategoriesCreated)
+    .HasForeignKey(vc => vc.CreatedBy)
+    .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<VendorCategory>()
+                .HasOne(vc => vc.ModifiedByUser)
+                .WithMany(u => u.VendorCategoriesModified)
+                .HasForeignKey(vc => vc.ModifiedBy)
+                .OnDelete(DeleteBehavior.Restrict);
+
 
 
             // =====================================================
