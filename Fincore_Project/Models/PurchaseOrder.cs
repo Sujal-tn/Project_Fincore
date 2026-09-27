@@ -11,12 +11,16 @@ namespace Fincore_Project.Models
         [Required]
         [ForeignKey("PurchaseOrder")]
         public int POId { get; set; }
+        [ForeignKey("Quotation")]
+        public int? QuotationId { get; set; }
         public PurchaseOrder PurchaseOrders { get; set; }
 
         [Required]
         [ForeignKey("PurchaseRequisitionItem")]
         public int PRItemId { get; set; }
         public PurchaseRequisitionItem PurchaseRequisitionItem { get; set; }
+        [ForeignKey("PurchaseRequisition")]
+        public int? PurchaseRequisitionId { get; set; }
 
         [Required]
         [StringLength(40)]
@@ -57,5 +61,25 @@ namespace Fincore_Project.Models
         public List<GRN> GRNs { get; set; }
         public List<Asset> Assets { get; set; }
         public List<APInvoice> APInvoices { get; set; }
+        public User ApprovedByUser { get; set; }
+        public User CreatedByUser { get; set; }
+        public User ModifiedByUser { get; set; }
+        public User RequestedByUser { get; set; }
+        public PurchaseRequisition PurchaseRequisition { get; set; }
+        public Quotation Quotation { get; set; }
+        [ForeignKey("ApprovedByUser")]
+        public int? ApprovedBy { get; set; }
+
+        [ForeignKey("CreatedByUser")]
+        public int? CreatedBy { get; set; }
+
+        [ForeignKey("ModifiedByUser")]
+        public int? ModifiedBy { get; set; }
+
+        [ForeignKey("RequestedByUser")]
+        public int? RequestedBy { get; set; }
+
+        //public List<Asset> Assets { get; set; }
+        //public List<APInvoice> APInvoices { get; set; }
     }
 }

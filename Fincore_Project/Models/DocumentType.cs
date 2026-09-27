@@ -31,5 +31,6 @@ namespace Fincore_Project.Models
 
         // Navigation Properties
         public List<Document> Documents { get; set; }
+        public List<VendorDocument> VendorDocuments { get; set; }
     }
 }
