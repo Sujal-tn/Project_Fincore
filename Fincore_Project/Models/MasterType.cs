@@ -17,10 +17,6 @@ namespace Fincore_Project.Models
         public List<Company> Companies { get; set; }
         public List<Department> Departments { get; set; }
         public List<Permission> Permissions { get; set; }
-<<<<<<< HEAD
         //public List<Document> Documents { get; set; }
-=======
-        public List<VendorDocument> Documents { get; set; }
->>>>>>> 12ff8e30522fc63e20b37e6fd8c0be62f9bedb96
     }
 }

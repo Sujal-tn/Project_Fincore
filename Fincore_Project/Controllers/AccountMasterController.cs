@@ -1,4 +1,5 @@
 ﻿using Fincore_Project.Interface;
+using Fincore_Project.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fincore_Project.Controllers
@@ -11,9 +12,6 @@ namespace Fincore_Project.Controllers
         {
             this.service = service;
         }
-        public IActionResult Index()
-        {
-            return View();
-        }
+     
     }
 }
