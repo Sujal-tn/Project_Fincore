@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fincore_Project.Models
 {
     public class Customer
     {
+        [Key]
+        public int CustomerId { get; set; }
         public List<ARInvoice> ARInvoices { get; set; }
         public List<Payment> Payments { get; set; }
         [Key]
