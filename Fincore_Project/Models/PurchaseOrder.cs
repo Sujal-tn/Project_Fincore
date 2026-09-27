@@ -13,6 +13,7 @@ namespace Fincore_Project.Models
         public int POId { get; set; }
         [ForeignKey("Quotation")]
         public int? QuotationId { get; set; }
+        public PurchaseOrder PurchaseOrders { get; set; }
 
         [Required]
         [ForeignKey("PurchaseRequisitionItem")]
@@ -78,5 +79,7 @@ namespace Fincore_Project.Models
         [ForeignKey("RequestedByUser")]
         public int? RequestedBy { get; set; }
 
+        //public List<Asset> Assets { get; set; }
+        //public List<APInvoice> APInvoices { get; set; }
     }
 }
