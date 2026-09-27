@@ -75,5 +75,6 @@ namespace Fincore_Project.Models
         public List<Employee> Employees { get; set; }
 
         public List<Customer> Customers { get; set; }
+        public List<Vendor> Vendors { get; set; }
     }
 }

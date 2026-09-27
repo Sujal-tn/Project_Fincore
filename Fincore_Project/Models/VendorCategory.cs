@@ -31,6 +31,7 @@ namespace Fincore_Project.Models
         public int ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
         public List<PurchaseRequisitionItem> PurchaseRequisitionItems { get; set; }
+
         public List<Vendor> Vendors { get; set; }
     }
 }
