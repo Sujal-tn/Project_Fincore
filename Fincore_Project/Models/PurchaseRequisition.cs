@@ -14,7 +14,7 @@ namespace Fincore_Project.Models
 
         [ForeignKey("CapexRequest")]
         public int? CapexRequestId { get; set; }
-        public CapexRequest CapexRequest { get; set; }
+        //public CapexRequest CapexRequest { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -62,6 +62,7 @@ namespace Fincore_Project.Models
 
         public List<PurchaseOrder> PurchaseOrders { get; set; } 
         public List<PurchaseRequisitionItem> PurchaseRequisitionItems { get; set; }
+        public List<PurchaseOrder> PurchaseOrders { get; set; }
         public List<RFQ> RFQs { get; set; }
 
     }
