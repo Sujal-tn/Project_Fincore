@@ -5,56 +5,14 @@ namespace Fincore_Project.Data
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+            : base(options)
         {
         }
-
-        // =========================
-        // ASSET / FINANCE
-        // =========================
-
         public DbSet<Asset> Assets { get; set; }
         public DbSet<APInvoice> APInvoices { get; set; }
         public DbSet<ARInvoice> ARInvoices { get; set; }
         public DbSet<Payment> Payments { get; set; }
-        public DbSet<Vendor> Venders { get; set; } 
-        public DbSet<VendorCategory> VendorCategory { get; set; }
-        public DbSet<VendorDocument> VendorDocument { get; set; }
-        public DbSet<DocumentType> DocumentType { get; set; }
-        public DbSet<VendorSelection> VendorSelection { get; set; }
-        public DbSet<PurchaseRequisition> PurchaseRequisition { get; set; }
-        public DbSet<PurchaseRequisitionItem> PurchaseRequisitionItem { get; set; }
-        public DbSet<PurchaseOrder> PurchaseOrder { get; set; }
-        public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; }
-        public DbSet<Quotation> Quotation { get; set; }
-        public DbSet<QuotationItem> QuotationItem { get; set; }
-        public DbSet<RFQ> RFQ { get; set; }
-        public DbSet<RFQVendor> RFQVendor { get; set; }
-        public DbSet<WorkOrder> WorkOrder { get; set; }
-        public DbSet<GRN> GRN { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Permission> Permissions { get; set; }
-        public DbSet<Module> Modules { get; set; }
-        public DbSet<RolePermissionModule> RolePermissionModules { get; set; }
-        public DbSet<Currency> Currencies { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<State> States { get; set; }
-        public DbSet<City> Cities { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Branch> Branches { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<CostCenter> CostCenters { get; set; }
-        public DbSet<ProfitCenter> ProfitCenters { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-
-        // =========================
-        // PROCUREMENT
-        // =========================
-
         public DbSet<Vendor> Venders { get; set; }
         public DbSet<VendorCategory> VendorCategory { get; set; }
         public DbSet<VendorDocument> VendorDocument { get; set; }
@@ -77,23 +35,11 @@ namespace Fincore_Project.Data
         public DbSet<WorkOrder> WorkOrder { get; set; }
 
         public DbSet<GRN> GRN { get; set; }
-
-
-        // =========================
-        // MODULE 1 - AUTHENTICATION
-        // =========================
-
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
         public DbSet<Module> Modules { get; set; }
         public DbSet<RolePermissionModule> RolePermissionModules { get; set; }
-
-
-        // =========================
-        // MODULE 2 - ORGANIZATION
-        // =========================
-
         public DbSet<Currency> Currencies { get; set; }
         public DbSet<Country> Countries { get; set; }
         public DbSet<State> States { get; set; }
@@ -114,19 +60,9 @@ namespace Fincore_Project.Data
 
         public DbSet<Customer> Customers { get; set; }
 
-
-        // =====================================================
-        // ALL RELATIONSHIPS
-        // =====================================================
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-
-            // =====================================================
-            // ASSET
-            // =====================================================
 
             modelBuilder.Entity<Asset>(e =>
             {
@@ -160,11 +96,6 @@ namespace Fincore_Project.Data
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-
-
-            // =====================================================
-            // AP INVOICE
-            // =====================================================
 
             modelBuilder.Entity<APInvoice>(e =>
             {
@@ -200,10 +131,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // =====================================================
-            // AR INVOICE
-            // =====================================================
-
             modelBuilder.Entity<ARInvoice>(e =>
             {
                 e.HasOne(x => x.Customer)
@@ -218,11 +145,6 @@ namespace Fincore_Project.Data
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-
-
-            // =====================================================
-            // PAYMENT
-            // =====================================================
 
             modelBuilder.Entity<Payment>(e =>
             {
@@ -257,11 +179,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // =====================================================
-            // VENDOR
-            // =====================================================
-
             modelBuilder.Entity<Vendor>()
                 .HasOne(v => v.VendorCategory)
                 .WithMany(vc => vc.Vendors)
@@ -286,26 +203,11 @@ namespace Fincore_Project.Data
                 .HasForeignKey(v => v.ModifiedBy)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            modelBuilder.Entity<PurchaseRequisitionItem>()
-                .HasOne(p => p.VendorCategory)
-                .WithMany(vc => vc.PurchaseRequisitionItems)
-                .HasForeignKey(p => p.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            // =====================================================
-            // VENDOR DOCUMENT
-            // =====================================================
-
             modelBuilder.Entity<VendorDocument>()
                 .HasOne(d => d.DocumentType)
                 .WithMany(dt => dt.VendorDocuments)
                 .HasForeignKey(d => d.DocumentTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // DOCUMENT TYPE
-            // =====================================================
 
             modelBuilder.Entity<DocumentType>()
                 .HasOne(d => d.CreatedByUser)
@@ -318,11 +220,6 @@ namespace Fincore_Project.Data
                 .WithMany(u => u.DocumentTypesModified)
                 .HasForeignKey(d => d.ModifiedBy)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // PURCHASE REQUISITION
-            // =====================================================
 
             modelBuilder.Entity<PurchaseRequisition>()
                 .HasOne(x => x.RequestedByUser)
@@ -348,11 +245,6 @@ namespace Fincore_Project.Data
                 .HasForeignKey(x => x.ModifiedBy)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-            // =====================================================
-            // PURCHASE REQUISITION ITEM
-            // =====================================================
-
             modelBuilder.Entity<PurchaseRequisitionItem>()
                 .HasOne(p => p.VendorCategory)
                 .WithMany(vc => vc.PurchaseRequisitionItems)
@@ -364,11 +256,6 @@ namespace Fincore_Project.Data
                 .WithMany(x => x.PurchaseRequisitionItems)
                 .HasForeignKey(x => x.PurchaseRequisitionId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-
-            // =====================================================
-            // RFQ
-            // =====================================================
 
             modelBuilder.Entity<RFQ>()
                 .HasOne(r => r.PurchaseRequisition)
@@ -383,27 +270,10 @@ namespace Fincore_Project.Data
                 .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<RFQVendor>()
-
-            // =====================================================
-            // RFQ VENDOR
-            // =====================================================
-
-            modelBuilder.Entity<RFQVendor>()
-                .HasOne(x => x.RFQ)
-                .WithMany(r => r.RFQVendors)
-                .HasForeignKey(x => x.RFQId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<RFQVendor>()
                 .HasOne(x => x.Vendor)
                 .WithMany(v => v.RFQVendors)
                 .HasForeignKey(x => x.VendorId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // VENDOR SELECTION
-            // =====================================================
 
             modelBuilder.Entity<VendorSelection>()
                 .HasOne(x => x.RFQ)
@@ -428,11 +298,6 @@ namespace Fincore_Project.Data
                 .WithMany(u => u.VendorSelectionsSelected)
                 .HasForeignKey(x => x.SelectedBy)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // PURCHASE ORDER
-            // =====================================================
 
             modelBuilder.Entity<PurchaseOrder>()
                 .HasOne(x => x.PurchaseRequisition)
@@ -470,21 +335,11 @@ namespace Fincore_Project.Data
                 .HasForeignKey(x => x.ModifiedBy)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-            // =====================================================
-            // PURCHASE ORDER ITEM
-            // =====================================================
-
             modelBuilder.Entity<PurchaseOrderItem>()
                 .HasOne(x => x.PurchaseRequisitionItem)
                 .WithMany(pri => pri.PurchaseOrderItems)
                 .HasForeignKey(x => x.PRItemId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // GRN
-            // =====================================================
 
             modelBuilder.Entity<GRN>()
                 .HasOne(x => x.PurchaseOrder)
@@ -510,11 +365,6 @@ namespace Fincore_Project.Data
                 .HasForeignKey(x => x.QualityCheckedBy)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-            // =====================================================
-            // WORK ORDER
-            // =====================================================
-
             modelBuilder.Entity<WorkOrder>()
                 .HasOne(x => x.OpexRequest)
                 .WithMany()
@@ -534,36 +384,10 @@ namespace Fincore_Project.Data
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<User>()
-                  .HasOne(u => u.Role)
-
-            modelBuilder.Entity<WorkOrder>()
-                .HasOne(x => x.Vendor)
-                .WithMany(v => v.WorkOrders)
-                .HasForeignKey(x => x.VendorId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<WorkOrder>()
-                .HasOne(x => x.CreatedByUser)
-                .WithMany(u => u.WorkOrdersCreated)
-                .HasForeignKey(x => x.CreatedBy)
-                .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // MODULE 1
-            // AUTHENTICATION & USERS
-            // =====================================================
-
-            modelBuilder.Entity<User>()
                 .HasOne(u => u.Role)
                 .WithMany()
                 .HasForeignKey(u => u.RoleId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // ROLE PERMISSION MODULE
-            // =====================================================
 
             modelBuilder.Entity<RolePermissionModule>(x =>
             {
@@ -583,22 +407,11 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // =====================================================
-            // MODULE 2
-            // ORGANIZATION MANAGEMENT
-            // =====================================================
-
             modelBuilder.Entity<Country>()
                 .HasOne(c => c.Currency)
                 .WithMany(c => c.Countries)
                 .HasForeignKey(c => c.CurrencyId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // STATE
-            // =====================================================
 
             modelBuilder.Entity<State>()
                 .HasOne(s => s.Country)
@@ -606,21 +419,11 @@ namespace Fincore_Project.Data
                 .HasForeignKey(s => s.CountryId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-
-            // =====================================================
-            // CITY
-            // =====================================================
-
             modelBuilder.Entity<City>()
                 .HasOne(c => c.State)
                 .WithMany(s => s.Cities)
                 .HasForeignKey(c => c.StateId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // COMPANY
-            // =====================================================
 
             modelBuilder.Entity<Company>(x =>
             {
@@ -634,11 +437,6 @@ namespace Fincore_Project.Data
                     .HasForeignKey(c => c.MasterTypeId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-
-
-            // =====================================================
-            // DEPARTMENT
-            // =====================================================
 
             modelBuilder.Entity<Department>(x =>
             {
@@ -663,148 +461,11 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            modelBuilder.Entity<City>()
-                        .HasOne(c => c.State)
-                        .WithMany()
-                        .HasForeignKey(c => c.StateId)
-                        .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<Company>(
-                x =>
-                {
-                    x.HasOne(c => c.Country)
-                        .WithMany(c => c.Companies)
-                        .HasForeignKey(c => c.CountryId)
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    x.HasOne(c => c.MasterType)
-                     .WithMany(m => m.Companies)
-                     .HasForeignKey(c => c.MasterTypeId)
-                     .OnDelete(DeleteBehavior.Restrict);
-                });
-
-
-            modelBuilder.Entity<Department>(
-                x =>
-                {
-                    x.HasOne(d => d.Company)
-                        .WithMany()
-                        .HasForeignKey(d => d.CompanyId)
-                        .OnDelete(DeleteBehavior.Restrict);
-
-                    x.HasOne(d => d.MasterType)
-                     .WithMany(m => m.Departments)
-                     .HasForeignKey(d => d.MasterTypeId)
-                     .OnDelete(DeleteBehavior.Restrict);
-                });
-
-
-            modelBuilder.Entity<Branch>()
-                        .HasOne(b => b.Company)
-                        .WithMany()
-                        .HasForeignKey(b => b.CompanyId)
-                        .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<CostCenter>(
-                x =>
-                {
-                    x.HasOne(c => c.Company)
-                      .WithMany()
-                      .HasForeignKey(c => c.CompanyId)
-                      .OnDelete(DeleteBehavior.Restrict);
-
-                    x.HasOne(c => c.Department)
-                      .WithMany()
-                        .HasForeignKey(c => c.DepartmentId)
-                      .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity<ProfitCenter>(
-                x =>
-                {
-                    x.HasOne(p => p.Company)
-                     .WithMany()
-                     .HasForeignKey(p => p.CompanyId)
-                     .OnDelete(DeleteBehavior.Restrict);
-
-                    x.HasOne(p => p.Department)
-                     .WithMany()
-                     .HasForeignKey(p => p.DepartmentId)
-                     .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity<Employee>(
-                x =>
-                {
-                    x.HasOne(e => e.User)
-                     .WithMany()
-                     .HasForeignKey(e => e.UserId)
-                     .OnDelete(DeleteBehavior.Restrict);
-
-                    x.HasOne(e => e.Role)
-                     .WithMany()
-                     .HasForeignKey(e => e.RoleId)
-                     .OnDelete(DeleteBehavior.Restrict);
-
-                    x.HasOne(e => e.Department)
-                     .WithMany()
-                     .HasForeignKey(e => e.DepartmentId)
-                     .OnDelete(DeleteBehavior.Restrict);
-
-                    x.HasOne(e => e.Company)
-                     .WithMany()
-                     .HasForeignKey(e => e.CompanyId)
-                     .OnDelete(DeleteBehavior.Restrict);
-
-                    x.HasOne(e => e.ReportingManagerEmployee)
-                        .WithMany()
-                           .HasForeignKey(e => e.ReportingManager)
-                          .OnDelete(DeleteBehavior.Restrict);
-                });
-
-            modelBuilder.Entity<DocumentType>(
-                                   x =>
-                                   {
-                                       x.HasOne(d => d.CreatedByUser)
-                                        .WithMany()
-                                        .HasForeignKey(d => d.CreatedBy)
-                                         .OnDelete(DeleteBehavior.Restrict);
-
-                                       x.HasOne(d => d.ModifiedByUser)
-                                        .WithMany()
-                                        .HasForeignKey(d => d.ModifiedBy)
-                                        .OnDelete(DeleteBehavior.Restrict);
-                                   });
-
-            modelBuilder.Entity<Department>(
-                                 x =>
-                                 {
-                                     x.HasOne(d => d.CreatedByUser)
-                                        .WithMany()
-                                        .HasForeignKey(d => d.CreatedBy)
-                                         .OnDelete(DeleteBehavior.Restrict);
-
-                                     x.HasOne(d => d.ModifiedByUser)
-                                        .WithMany()
-                                        .HasForeignKey(d => d.ModifiedBy)
-                                        .OnDelete(DeleteBehavior.Restrict);
-                              });
-        }
-
-            // =====================================================
-            // BRANCH
-            // =====================================================
-
             modelBuilder.Entity<Branch>()
                 .HasOne(b => b.Company)
                 .WithMany()
                 .HasForeignKey(b => b.CompanyId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-
-            // =====================================================
-            // COST CENTER
-            // =====================================================
 
             modelBuilder.Entity<CostCenter>(x =>
             {
@@ -819,11 +480,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // =====================================================
-            // PROFIT CENTER
-            // =====================================================
-
             modelBuilder.Entity<ProfitCenter>(x =>
             {
                 x.HasOne(p => p.Company)
@@ -836,11 +492,6 @@ namespace Fincore_Project.Data
                     .HasForeignKey(p => p.DepartmentId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-
-
-            // =====================================================
-            // EMPLOYEE
-            // =====================================================
 
             modelBuilder.Entity<Employee>(x =>
             {
@@ -879,13 +530,6 @@ namespace Fincore_Project.Data
                     .HasForeignKey(e => e.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-
-        
-
-
-            // =====================================================
-            // DOCUMENT TYPE AUDIT
-            // =====================================================
 
             modelBuilder.Entity<DocumentType>(x =>
             {
