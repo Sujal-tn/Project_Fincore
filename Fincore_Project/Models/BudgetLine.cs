@@ -3,53 +3,46 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fincore_Project.Models
 {
-    public class Department
+    public class BudgetLine
     {
         [Key]
-        public int DepartmentId { get; set; }
+        public int BudgetLineId { get; set; }
 
         [Required]
-        [ForeignKey("Company")]
-        public int CompanyId { get; set; }
-
-        public Company Company { get; set; }
-
-        [Required]
-        [StringLength(30)]
-        public string DepartmentName { get; set; }
+        [ForeignKey("Budget")]
+        public int BudgetId { get; set; }
+        public Budget Budget { get; set; }
 
         [Required]
-        [StringLength(30)]
-        public string DepartmentCode { get; set; }
+        [ForeignKey("BudgetCategory")]
+        public int BudgetCategoryId { get; set; }
+        public BudgetCategory BudgetCategory { get; set; }
 
-        [ForeignKey("MasterType")]
-        public int? MasterTypeId { get; set; }
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal AllocatedAmount { get; set; }
 
-        public MasterType MasterType { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public decimal? UtilizedAmount { get; set; }
 
         [Required]
         public byte IsActive { get; set; }
 
         public DateTime? CreatedAt { get; set; }
-
         public DateTime? ModifiedAt { get; set; }
 
         [Required]
         [ForeignKey("CreatedByUser")]
         public int CreatedBy { get; set; }
-
         public User CreatedByUser { get; set; }
 
         [Required]
         [ForeignKey("ModifiedByUser")]
         public int ModifiedBy { get; set; }
-
         public User ModifiedByUser { get; set; }
 
-<<<<<<< HEAD
-        public List<RevenueEntry> RevenueEntry {  get; set; }
-=======
-        public List<Asset> Assets { get; set; }
->>>>>>> 12ff8e30522fc63e20b37e6fd8c0be62f9bedb96
+        
+        public List<CapexRequest> CapexRequests { get; set; }
+        public List<OpexRequest> OpexRequests { get; set; }
     }
 }
