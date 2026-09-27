@@ -77,6 +77,18 @@ namespace Fincore_Project.Data
         public DbSet<Customer> Customers { get; set; }
 
 
+        // =========================
+        // BUDGET/CAPEX/OPEX/EXPENSE
+        // =========================
+        public DbSet<Budget> Budgets { get; set; }
+        public DbSet<BudgetCategory> BudgetCategories { get; set; }
+        public DbSet<BudgetLine> BudgetLines { get; set; }
+
+        public DbSet<CapexRequest> CapexRequests { get; set; }
+        public DbSet<OpexRequest> OpexRequests { get; set; }
+        public DbSet<ExpenseClaim> ExpenseClaims { get; set; }
+
+
         // =====================================================
         // ALL RELATIONSHIPS
         // =====================================================
@@ -681,6 +693,156 @@ namespace Fincore_Project.Data
                 x.HasOne(d => d.ModifiedByUser)
                     .WithMany()
                     .HasForeignKey(d => d.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+     // =====================================================
+       // MODULE 3 - BUDGET / CAPEX / OPEX / EXPENSE
+     // =====================================================
+
+            // =====================================================
+            // BUDGET
+            // =====================================================
+
+            modelBuilder.Entity<Budget>(x =>
+            {
+                x.HasOne(b => b.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(b => b.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(b => b.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(b => b.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // =====================================================
+            // BUDGET CATEGORY
+            // =====================================================
+
+            modelBuilder.Entity<BudgetCategory>(x =>
+            {
+                x.HasOne(bc => bc.Department)
+                    .WithMany()
+                    .HasForeignKey(bc => bc.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(bc => bc.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(bc => bc.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(bc => bc.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(bc => bc.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // =====================================================
+            // BUDGET LINE
+            // =====================================================
+
+            modelBuilder.Entity<BudgetLine>(x =>
+            {
+                x.HasOne(bl => bl.Budget)
+                    .WithMany(b => b.BudgetLines)
+                    .HasForeignKey(bl => bl.BudgetId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(bl => bl.BudgetCategory)
+                    .WithMany(bc => bc.BudgetLines)
+                    .HasForeignKey(bl => bl.BudgetCategoryId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(bl => bl.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(bl => bl.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(bl => bl.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(bl => bl.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // =====================================================
+            // CAPEX REQUEST
+            // =====================================================
+
+            modelBuilder.Entity<CapexRequest>(x =>
+            {
+                x.HasOne(c => c.Department)
+                    .WithMany()
+                    .HasForeignKey(c => c.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(c => c.BudgetLine)
+                    .WithMany(bl => bl.CapexRequests)
+                    .HasForeignKey(c => c.BudgetLineId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(c => c.RequestedByUser)
+                    .WithMany()
+                    .HasForeignKey(c => c.RequestedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(c => c.ApprovedByUser)
+                    .WithMany()
+                    .HasForeignKey(c => c.ApprovedBy)
+                    .IsRequired(false)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // =====================================================
+            // OPEX REQUEST
+            // =====================================================
+
+            modelBuilder.Entity<OpexRequest>(x =>
+            {
+                x.HasOne(o => o.BudgetLine)
+                    .WithMany(bl => bl.OpexRequests)
+                    .HasForeignKey(o => o.BudgetLineId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(o => o.RequestedByUser)
+                    .WithMany()
+                    .HasForeignKey(o => o.RequestedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(o => o.ApprovedByUser)
+                    .WithMany()
+                    .HasForeignKey(o => o.ApprovedBy)
+                    .IsRequired(false)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // =====================================================
+            // EXPENSE CLAIM
+            // =====================================================
+
+            modelBuilder.Entity<ExpenseClaim>(x =>
+            {
+                x.HasOne(ec => ec.OpexRequest)
+                    .WithMany(o => o.ExpenseClaims)
+                    .HasForeignKey(ec => ec.OpexRequestId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(ec => ec.ClaimByUser)
+                    .WithMany()
+                    .HasForeignKey(ec => ec.ClaimBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                x.HasOne(ec => ec.ApprovedByUser)
+                    .WithMany()
+                    .HasForeignKey(ec => ec.ApprovedBy)
+                    .IsRequired(false)
                     .OnDelete(DeleteBehavior.Restrict);
             });
         }
