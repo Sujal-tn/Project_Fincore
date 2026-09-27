@@ -70,7 +70,7 @@ namespace Fincore_Project.Models
 
         public List<Department> Departments { get; set; }
 
-        public List<Vendor> Vendors { get; set; }
+  
 
         public List<Employee> Employees { get; set; }
 

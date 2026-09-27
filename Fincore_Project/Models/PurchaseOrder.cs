@@ -11,7 +11,7 @@ namespace Fincore_Project.Models
         [Required]
         [ForeignKey("PurchaseOrder")]
         public int POId { get; set; }
-        public PurchaseOrder PurchaseOrder { get; set; }
+        public PurchaseOrder PurchaseOrders { get; set; }
 
         [Required]
         [ForeignKey("PurchaseRequisitionItem")]
@@ -55,7 +55,7 @@ namespace Fincore_Project.Models
 
         public List<PurchaseOrderItem> PurchaseOrderItems { get; set; }
         public List<GRN> GRNs { get; set; }
-        public List<Asset> Assets { get; set; }
-        public List<APInvoice> APInvoices { get; set; }
+        //public List<Asset> Assets { get; set; }
+        //public List<APInvoice> APInvoices { get; set; }
     }
 }
