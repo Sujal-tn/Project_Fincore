@@ -27,19 +27,19 @@ namespace Fincore_Project.Controllers
             return Json(ast);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> AddAsset(Asset a)
-        {
-            await ias.AddAsset(a);
-            return Json("Asset Added Successfully!!");
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> AddAsset(Asset a)
+        //{
+        //    await ias.AddAsset(a);
+        //    return Json("Asset Added Successfully!!");
+        //}
 
-        [HttpPost]
-        public async Task<IActionResult> UpdateAsset(Asset a)
-        {
-            await ias.UpdateAsset(a);
-            return Json("Asset Updated Successfully!!");
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> UpdateAsset(Asset a)
+        //{
+        //    await ias.UpdateAsset(a);
+        //    return Json("Asset Updated Successfully!!");
+        //}
 
         [HttpPost]
         public async Task<IActionResult> DeleteAsset(int id)
