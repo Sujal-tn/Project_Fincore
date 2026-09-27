@@ -8,8 +8,7 @@ namespace Fincore_Project.Models
         public int CustomerId { get; set; }
         public List<ARInvoice> ARInvoices { get; set; }
         public List<Payment> Payments { get; set; }
-        [Key]
-        public int CustomerId { get; set; }
+       
 
         [Required]
         [StringLength(30)]
