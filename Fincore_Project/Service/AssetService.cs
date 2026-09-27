@@ -21,7 +21,7 @@ namespace Fincore_Project.Service
         public async Task DeleteAsset(int id)
         {
             var del = await db.Assets.FindAsync(id);
-            if(del != null)
+            if (del != null)
             {
                 db.Assets.Remove(del);
                 await db.SaveChangesAsync();

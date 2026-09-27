@@ -70,7 +70,10 @@ namespace Fincore_Project.Models
 
         public List<Department> Departments { get; set; }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
         public List<Employee> Employees { get; set; }
 
         public List<Customer> Customers { get; set; }

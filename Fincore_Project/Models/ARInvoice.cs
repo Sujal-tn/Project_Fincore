@@ -22,12 +22,19 @@ namespace Fincore_Project.Models
         public int RevenueEntryId { get; set; }
         public RevenueEntry RevenueEntry { get; set; }
 
+<<<<<<< HEAD
         [Required]
+=======
+>>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
         public DateTime InvoiceDate { get; set; }
 
         [Required]
         public DateTime DueDate { get; set; }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
         [Column(TypeName = "decimal(18, 2)")]
         public decimal Amount { get; set; }
 
@@ -54,7 +61,13 @@ namespace Fincore_Project.Models
         public int ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
 
+<<<<<<< HEAD
         // Navigation Properties
         public List<Payment> Payments { get; set; }
+=======
+        //Navigation
+        public List<Payment> Payments { get; set; }
+
+>>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
     }
 }

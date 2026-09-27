@@ -9,43 +9,49 @@ namespace Fincore_Project.Data
             : base(options)
         {
         }
-
-        public DbSet<ARInvoice> ARInvoices { get; set; }
+        public DbSet<ARInvoice> ARInvoices { get; set; } = null!;
         public DbSet<RevenueEntry> RevenueEntries { get; set; } = null!;
         public DbSet<AccountMaster> AccountMasters { get; set; } = null!;
         public DbSet<JournalEntry> JournalEntries { get; set; } = null!;
+
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Role> Roles { get; set; } = null!;
         public DbSet<Permission> Permissions { get; set; } = null!;
         public DbSet<Module> Modules { get; set; } = null!;
         public DbSet<RolePermissionModule> RolePermissionModules { get; set; } = null!;
+        public DbSet<Asset> Assets { get; set; }
+
         public DbSet<Currency> Currencies { get; set; } = null!;
         public DbSet<Country> Countries { get; set; } = null!;
         public DbSet<State> States { get; set; } = null!;
         public DbSet<City> Cities { get; set; } = null!;
+
         public DbSet<Company> Companies { get; set; } = null!;
         public DbSet<Branch> Branches { get; set; } = null!;
         public DbSet<Department> Departments { get; set; } = null!;
         public DbSet<CostCenter> CostCenters { get; set; } = null!;
         public DbSet<ProfitCenter> ProfitCenters { get; set; } = null!;
+
         public DbSet<Employee> Employees { get; set; } = null!;
+
         public DbSet<MasterType> MasterTypes { get; set; } = null!;
+
         public DbSet<Document> Documents { get; set; } = null!;
         public DbSet<DocumentType> DocumentTypes { get; set; } = null!;
+
         public DbSet<Customer> Customers { get; set; } = null!;
         public DbSet<Budget> Budgets { get; set; } = null!;
         public DbSet<BudgetCategory> BudgetCategories { get; set; } = null!;
         public DbSet<BudgetLine> BudgetLines { get; set; } = null!;
+
         public DbSet<CapexRequest> CapexRequests { get; set; } = null!;
         public DbSet<OpexRequest> OpexRequests { get; set; } = null!;
         public DbSet<ExpenseClaim> ExpenseClaims { get; set; } = null!;
-        public DbSet<Asset> Assets { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<Asset>(e =>
             {
                 e.HasOne(x => x.Vendor)
@@ -77,7 +83,7 @@ namespace Fincore_Project.Data
                     .HasForeignKey(x => x.GRNId)
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<APInvoice>(e =>
             {
@@ -166,7 +172,7 @@ namespace Fincore_Project.Data
                     .WithMany()
                     .HasForeignKey(v => v.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<VendorCategory>(e =>
             {
@@ -213,7 +219,7 @@ namespace Fincore_Project.Data
                     .WithMany()
                     .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<PurchaseRequisition>(e =>
             {
@@ -236,7 +242,7 @@ namespace Fincore_Project.Data
                     .WithMany()
                     .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<RFQ>(e =>
             {
@@ -257,7 +263,7 @@ namespace Fincore_Project.Data
                     .WithMany(x => x.RFQVendors)
                     .HasForeignKey(x => x.VendorId)
                     .OnDelete(DeleteBehavior.Restrict);
-            });
+            }); 
 
             modelBuilder.Entity<VendorSelection>(e =>
             {
@@ -370,7 +376,7 @@ namespace Fincore_Project.Data
                     .WithMany()
                     .HasForeignKey(x => x.RoleId)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<RolePermissionModule>(e =>
             {
@@ -522,7 +528,7 @@ namespace Fincore_Project.Data
                     .WithMany()
                     .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<Budget>(e =>
             {
@@ -553,7 +559,7 @@ namespace Fincore_Project.Data
                     .WithMany()
                     .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<BudgetLine>(e =>
             {
@@ -576,7 +582,7 @@ namespace Fincore_Project.Data
                     .WithMany()
                     .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<CapexRequest>(e =>
             {
@@ -619,7 +625,7 @@ namespace Fincore_Project.Data
                     .HasForeignKey(x => x.ApprovedBy)
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.Restrict);
-            }); 
+            });
 
             modelBuilder.Entity<ExpenseClaim>(e =>
             {
