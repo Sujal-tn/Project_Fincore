@@ -4,6 +4,16 @@ namespace Fincore_Project.Models
 {
     public class Customer
     {
+<<<<<<< HEAD
+
+
+        [Key]
+        public int CustomerId { get; set; }
+
+        public List<RevenueEntry> RevenueEntries {  get; set; }
+
+        public List<ARInvoice> ARInvoices { get; set; }
+=======
         [Key]
         public int CustomerId { get; set; }
         public List<ARInvoice> ARInvoices { get; set; }
