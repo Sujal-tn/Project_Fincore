@@ -27,7 +27,6 @@ namespace Fincore_Project.Models
         [Required]
         public byte IsActive { get; set; }
 
-        public List<Payment> Payments { get; set; }
-        public List<ARInvoice> ARInvoices { get; set; }
+     
     }
 }
