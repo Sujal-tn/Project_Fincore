@@ -27,6 +27,9 @@ namespace Fincore_Project.Models
         [Required]
         public byte IsActive { get; set; }
 
+<<<<<<< HEAD
+=======
      
+>>>>>>> 12ff8e30522fc63e20b37e6fd8c0be62f9bedb96
     }
 }
