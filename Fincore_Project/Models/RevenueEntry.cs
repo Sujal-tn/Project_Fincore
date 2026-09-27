@@ -3,45 +3,42 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fincore_Project.Models
 {
-    public class ARInvoice
+    public class RevenueEntry
     {
         [Key]
-        public int ARInvoiceId { get; set; }
+        public int RevenueEntryId { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string InvoiceNumber { get; set; }
-
 
         [Required]
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
-        [ForeignKey("RevenueEntry")]
-        public int RevenueEntryId { get; set; }
-        public RevenueEntry RevenueEntry { get; set; }
+        [Required]
+        [ForeignKey("Department")]
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
 
         [Required]
-        public DateTime InvoiceDate { get; set; }
+        [StringLength(20)]
+        public string RevenueType { get; set; }
 
         [Required]
-        public DateTime DueDate { get; set; }
-
-        [Column(TypeName = "decimal(18, 2)")]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal? AmountReceived { get; set; }
+        public DateTime RevenueDate { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal? AmountOutstanding { get; set; }
 
-        [StringLength(20)]
-        public string PaymentStatus { get; set; }
+        [ForeignKey("AccountMaster")]
+        public int AccountId { get; set; }
+        public AccountMaster AccountMaster { get; set; }
+
+        public string Status { get; set; }
 
         public DateTime CreatedAt { get; set; }
-
         public DateTime? ModifiedAt { get; set; }
 
 
@@ -49,12 +46,13 @@ namespace Fincore_Project.Models
         public int CreatedBy { get; set; }
         public User CreatedByUser { get; set; }
 
-
+     
         [ForeignKey("ModifiedByUser")]
         public int ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
 
-        // Navigation Properties
-        public List<Payment> Payments { get; set; }
+
+        //Navigation
+        public List<ARInvoice> ARInvoices { get; set; }
     }
 }

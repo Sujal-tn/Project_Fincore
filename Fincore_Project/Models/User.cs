@@ -44,6 +44,14 @@ namespace Fincore_Project.Models
 
         public DateTime? ModifiedAt { get; set; }
 
+        public List<RevenueEntry> RevenueEntriesCreated {  get; set; }
+        public List<RevenueEntry> RevenueEntriesModified { get; set; }
+        public List<ARInvoice> ARInvoicesCreated { get; set; }     
+        public List<ARInvoice> ARInvoicesModified { get; set; }
+        public List<AccountMaster> AccountMastersCreated { get; set; }
+        public List<AccountMaster> AccountMastersModified { get; set; }
+        public List<JournalEntry> JournalEntriesCreated { get; set; }
+        public List<JournalEntry> JournalEntriesModified { get; set; }
         public List<Vendor> VendorsCreated { get; set; }
         public List<Vendor> VendorsModified { get; set; }
         public List<DocumentType> DocumentTypesCreated { get; set; }
@@ -63,6 +71,5 @@ namespace Fincore_Project.Models
         public List<GRN> GRNsQualityChecked { get; set; }
         public List<WorkOrder> WorkOrdersCreated { get; set; }
         public List<VendorSelection> VendorSelectionsSelected { get; set; }
-
     }
 }

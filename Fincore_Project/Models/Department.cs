@@ -45,7 +45,7 @@ namespace Fincore_Project.Models
         public int ModifiedBy { get; set; }
 
         public User ModifiedByUser { get; set; }
-
+        public List<RevenueEntry> RevenueEntry {  get; set; }
         public List<Asset> Assets { get; set; }
     }
 }
