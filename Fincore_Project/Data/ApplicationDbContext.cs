@@ -412,10 +412,10 @@ namespace Fincore_Project.Data
                 modelBuilder.Entity<DocumentType>(x =>
                 {
                     modelBuilder.Entity<DocumentType>()
-           .HasOne(d => d.CreatedByUser)
-           .WithMany(u => u.DocumentTypesCreated)
-           .HasForeignKey(d => d.CreatedBy)
-           .OnDelete(DeleteBehavior.Restrict);
+                       .HasOne(d => d.CreatedByUser)
+                       .WithMany(u => u.DocumentTypesCreated)
+                       .HasForeignKey(d => d.CreatedBy)
+                       .OnDelete(DeleteBehavior.Restrict);
 
                     modelBuilder.Entity<DocumentType>()
                         .HasOne(d => d.ModifiedByUser)
@@ -447,38 +447,27 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-            modelBuilder.Entity<DocumentType>(e =>
-            {
-                e.HasOne(x => x.CreatedByUser)
-                    .WithMany()
-                    .HasForeignKey(x => x.CreatedBy)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                e.HasOne(x => x.ModifiedByUser)
-                    .WithMany()
-                    .HasForeignKey(x => x.ModifiedBy)
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
+           
 
             modelBuilder.Entity<PurchaseRequisition>(e =>
             {
                 e.HasOne(x => x.RequestedByUser)
-                    .WithMany()
+                    .WithMany(p=>p.PurchaseRequisitionsRequested)
                     .HasForeignKey(x => x.RequestedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.ApprovedByUser)
-                    .WithMany()
+                    .WithMany(p => p.PurchaseRequisitionsApproved)
                     .HasForeignKey(x => x.ApprovedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.CreatedByUser)
-                    .WithMany()
+                    .WithMany(p=>p.PurchaseRequisitionsCreated)
                     .HasForeignKey(x => x.CreatedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.ModifiedByUser)
-                    .WithMany()
+                    .WithMany(p=>p.PurchaseRequisitionsModified)
                     .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
             });
@@ -522,7 +511,7 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.SelectedByUser)
-                    .WithMany()
+                    .WithMany(v=>v.VendorSelectionsSelected)
                     .HasForeignKey(x => x.SelectedBy)
                     .OnDelete(DeleteBehavior.Restrict);
             });
@@ -540,22 +529,22 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.RequestedByUser)
-                    .WithMany()
+                    .WithMany(u => u.PurchaseOrdersRequested)
                     .HasForeignKey(x => x.RequestedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.ApprovedByUser)
-                    .WithMany()
+                    .WithMany(u => u.PurchaseOrdersApproved)
                     .HasForeignKey(x => x.ApprovedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.CreatedByUser)
-                    .WithMany()
+                    .WithMany(u => u.PurchaseOrdersCreated)
                     .HasForeignKey(x => x.CreatedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.ModifiedByUser)
-                    .WithMany()
+                    .WithMany(u => u.PurchaseOrdersModified)
                     .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
             });
