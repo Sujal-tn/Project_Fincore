@@ -203,7 +203,7 @@ namespace Fincore_Project.Data
                     .WithMany(u => u.VendorsModified)
                     .HasForeignKey(v => v.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
-            }));
+            });
 
             modelBuilder.Entity<VendorCategory>(e =>
             {
