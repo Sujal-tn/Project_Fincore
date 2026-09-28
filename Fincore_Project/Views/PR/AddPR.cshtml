@@ -1,0 +1,112 @@
+﻿<a id="btn" class="btn btn-primary">Create PR</a>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form id="PRform" method="post">
+
+                    PR Number
+                    <input type="text"
+                           name="PRNumber"
+                           class="form-control" />
+
+                    CAPEX Request
+                    <select name="CapexRequestId"
+                            asp-items="ViewBag.CapexList"
+                            class="form-control">
+                        <option value=""> Select CAPEX Request </option>
+                    </select>
+
+
+                    PR Title
+                    <input type="text"
+                           name="PRTitle"
+                           class="form-control" />
+
+                    Select Vender
+                    <select name="VendorId"
+                            asp-items="ViewBag.VendorList"
+                            class="form-control">
+                        <option value="">-- Select Vendor --</option>
+                    </select>
+
+                    Requested By
+                    <select name="RequestedBy"
+                            asp-items="ViewBag.UserList"
+                            class="form-control">
+                        <option value="">-- Select Employee --</option>
+                    </select>
+
+                    
+                    Amount
+                    <input type="text"
+                           name="Amount"
+                           class="form-control" />
+
+                    Required Till Date
+                    <input type="date"
+                           name="RequiredTillDate"
+                           class="form-control" />
+
+                    Order Date
+                    <input type="date"
+                           name="OrderDate"
+                           class="form-control" />
+
+                    Approval Status
+                    <select class="form-control"
+                            name="ApprovalStatus ">
+                        <option>Pending</option>
+                        <option>Approve</option>
+
+                    </select>
+
+                    Status
+                    <select class="form-control"
+                            name="IsActive">
+                        <option value="1">Active</option>
+                        <option value="0">InActive</option>
+
+                    </select>
+
+                    <input type="submit"
+                           value="Save"
+                           id="savebtn"
+                           class="btn btn-primary" />
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                        id="closemodal">
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/javascript.js"></script>
