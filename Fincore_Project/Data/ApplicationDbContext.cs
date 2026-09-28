@@ -108,6 +108,54 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
+            modelBuilder.Entity<AssetAssignment>()
+                .HasOne(aa => aa.Asset)
+                .WithMany(a => a.AssetAssignments)
+                .HasForeignKey(aa => aa.AssetId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // An employee can be assigned multiple assets
+            modelBuilder.Entity<AssetAssignment>()
+                .HasOne(aa => aa.Employee)
+                .WithMany()
+                .HasForeignKey(aa => aa.EmployeeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Store the different locations of an asset
+            modelBuilder.Entity<AssetLocation>()
+                .HasOne(al => al.Asset)
+                .WithMany(a => a.AssetLocations)
+                .HasForeignKey(al => al.AssetId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // An asset can have multiple depreciation records
+            modelBuilder.Entity<AssetDepreciation>()
+                .HasOne(ad => ad.Asset)
+                .WithMany(a => a.AssetDepreciations)
+                .HasForeignKey(ad => ad.AssetId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // An asset can have multiple disposal records as per the current model
+            modelBuilder.Entity<AssetDisposal>()
+                .HasOne(ad => ad.Asset)
+                .WithMany(a => a.AssetDisposals)
+                .HasForeignKey(ad => ad.AssetId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Store the history of changes made to an asset
+            modelBuilder.Entity<AssetHistory>()
+                .HasOne(ah => ah.Asset)
+                .WithMany(a => a.AssetHistories)
+                .HasForeignKey(ah => ah.AssetId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // Store which user performed an asset history action
+            modelBuilder.Entity<AssetHistory>()
+                .HasOne(ah => ah.PerformedByUser)
+                .WithMany()
+                .HasForeignKey(ah => ah.PerformedBy)
+                .OnDelete(DeleteBehavior.Restrict);
+
             modelBuilder.Entity<APInvoice>(e =>
             {
                 e.HasOne(x => x.Vendor)
