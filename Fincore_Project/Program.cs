@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbconn")));
 
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IAssetService, AssetService>();
 builder.Services.AddScoped<IVendorCategoryService, VendorCategoryService>();
 builder.Services.AddScoped<IPRService, PRService>();
 
