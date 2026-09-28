@@ -1,4 +1,5 @@
-﻿using Fincore_Project.Models;
+﻿
+using Fincore_Project.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fincore_Project.Data
@@ -10,97 +11,87 @@ namespace Fincore_Project.Data
         {
         }
 
-        // =========================
-        // ASSET / FINANCE
-        // =========================
+        // ===================================================== 
+        // DBSETS 
+        // ===================================================== 
 
-        public DbSet<Asset> Assets { get; set; }
-        public DbSet<APInvoice> APInvoices { get; set; }
-        public DbSet<ARInvoice> ARInvoices { get; set; }
-        public DbSet<Payment> Payments { get; set; }
+        public DbSet<ARInvoice> ARInvoices { get; set; } = null!;
+        public DbSet<RevenueEntry> RevenueEntries { get; set; } = null!;
+        public DbSet<AccountMaster> AccountMasters { get; set; } = null!;
+        public DbSet<JournalEntry> JournalEntries { get; set; } = null!;
 
+        public DbSet<User> Users { get; set; } = null!;
+        public DbSet<Role> Roles { get; set; } = null!;
+        public DbSet<Permission> Permissions { get; set; } = null!;
+        public DbSet<Module> Modules { get; set; } = null!;
+        public DbSet<RolePermissionModule> RolePermissionModules { get; set; } = null!;
 
-        // =========================
-        // PROCUREMENT
-        // =========================
+        // ===================================================== 
+        // MODULE 2 - ORGANIZATION 
+        // ===================================================== 
+
+        public DbSet<Currency> Currencies { get; set; } = null!;
+        public DbSet<Country> Countries { get; set; } = null!;
+        public DbSet<State> States { get; set; } = null!;
+        public DbSet<City> Cities { get; set; } = null!;
+
+        public DbSet<Company> Companies { get; set; } = null!;
+        public DbSet<Branch> Branches { get; set; } = null!;
+        public DbSet<Department> Departments { get; set; } = null!;
+        public DbSet<CostCenter> CostCenters { get; set; } = null!;
+        public DbSet<ProfitCenter> ProfitCenters { get; set; } = null!;
+
+        public DbSet<Employee> Employees { get; set; } = null!;
+
+        public DbSet<MasterType> MasterTypes { get; set; } = null!;
+
+        public DbSet<Customer> Customers { get; set; } = null!;
+
+        // ===================================================== 
+        // BUDGET / CAPEX / OPEX / EXPENSE 
+        // ===================================================== 
+
+        public DbSet<Budget> Budgets { get; set; } = null!;
+        public DbSet<BudgetCategory> BudgetCategories { get; set; } = null!;
+        public DbSet<BudgetLine> BudgetLines { get; set; } = null!;
+
+        public DbSet<CapexRequest> CapexRequests { get; set; } = null!;
+        public DbSet<OpexRequest> OpexRequests { get; set; } = null!;
+        public DbSet<ExpenseClaim> ExpenseClaims { get; set; } = null!;
 
         public DbSet<Vendor> Venders { get; set; }
         public DbSet<VendorCategory> VendorCategory { get; set; }
         public DbSet<VendorDocument> VendorDocument { get; set; }
+
         public DbSet<DocumentType> DocumentType { get; set; }
+
         public DbSet<VendorSelection> VendorSelection { get; set; }
         public DbSet<PurchaseRequisition> PurchaseRequisition { get; set; }
         public DbSet<PurchaseRequisitionItem> PurchaseRequisitionItem { get; set; }
+
         public DbSet<PurchaseOrder> PurchaseOrder { get; set; }
         public DbSet<PurchaseOrderItem> PurchaseOrderItem { get; set; }
+
         public DbSet<Quotation> Quotation { get; set; }
         public DbSet<QuotationItem> QuotationItem { get; set; }
+
         public DbSet<RFQ> RFQ { get; set; }
         public DbSet<RFQVendor> RFQVendor { get; set; }
+
         public DbSet<WorkOrder> WorkOrder { get; set; }
+
         public DbSet<GRN> GRN { get; set; }
 
 
-        // =========================
-        // MODULE 1 - AUTHENTICATION
-        // =========================
-
-        public DbSet<User> Users { get; set; }
-        public DbSet<Role> Roles { get; set; }
-        public DbSet<Permission> Permissions { get; set; }
-        public DbSet<Module> Modules { get; set; }
-        public DbSet<RolePermissionModule> RolePermissionModules { get; set; }
-
-
-        // =========================
-        // MODULE 2 - ORGANIZATION
-        // =========================
-
-        public DbSet<Currency> Currencies { get; set; }
-        public DbSet<Country> Countries { get; set; }
-        public DbSet<State> States { get; set; }
-        public DbSet<City> Cities { get; set; }
-
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Branch> Branches { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<CostCenter> CostCenters { get; set; }
-        public DbSet<ProfitCenter> ProfitCenters { get; set; }
-
-        public DbSet<Employee> Employees { get; set; }
-
-        public DbSet<MasterType> MasterTypes { get; set; }
-
-        public DbSet<Document> Documents { get; set; }
-        public DbSet<DocumentType> DocumentTypes { get; set; }
-
-        public DbSet<Customer> Customers { get; set; }
-
-
-        // =========================
-        // BUDGET/CAPEX/OPEX/EXPENSE
-        // =========================
-        public DbSet<Budget> Budgets { get; set; }
-        public DbSet<BudgetCategory> BudgetCategories { get; set; }
-        public DbSet<BudgetLine> BudgetLines { get; set; }
-
-        public DbSet<CapexRequest> CapexRequests { get; set; }
-        public DbSet<OpexRequest> OpexRequests { get; set; }
-        public DbSet<ExpenseClaim> ExpenseClaims { get; set; }
-
-
-        // =====================================================
-        // ALL RELATIONSHIPS
-        // =====================================================
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
 
-            // =====================================================
-            // ASSET
-            // =====================================================
+            // ===================================================== 
+            // ASSET 
+            // ===================================================== 
 
             modelBuilder.Entity<Asset>(e =>
             {
@@ -136,9 +127,9 @@ namespace Fincore_Project.Data
             });
 
 
-            // =====================================================
-            // AP INVOICE
-            // =====================================================
+            // ===================================================== 
+            // AP INVOICE 
+            // ===================================================== 
 
             modelBuilder.Entity<APInvoice>(e =>
             {
@@ -174,29 +165,9 @@ namespace Fincore_Project.Data
             });
 
 
-            // =====================================================
-            // AR INVOICE
-            // =====================================================
-
-            modelBuilder.Entity<ARInvoice>(e =>
-            {
-                e.HasOne(x => x.Customer)
-                    .WithMany(c => c.ARInvoices)
-                    .HasForeignKey(x => x.CustomerId)
-                    .IsRequired()
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                e.HasOne(x => x.RevenueEntry)
-                    .WithMany(r => r.ARInvoices)
-                    .HasForeignKey(x => x.RevenueEntryId)
-                    .IsRequired(false)
-                    .OnDelete(DeleteBehavior.Restrict);
-            });
-
-
-            // =====================================================
-            // PAYMENT
-            // =====================================================
+            // ===================================================== 
+            // PAYMENT 
+            // ===================================================== 
 
             modelBuilder.Entity<Payment>(e =>
             {
@@ -232,9 +203,10 @@ namespace Fincore_Project.Data
             });
 
 
-            // =====================================================
-            // VENDOR
-            // =====================================================
+            // ===================================================== 
+            // VENDOR 
+            // ===================================================== 
+
 
             modelBuilder.Entity<Vendor>()
                 .HasOne(v => v.VendorCategory)
@@ -520,28 +492,54 @@ namespace Fincore_Project.Data
             // =====================================================
 
             modelBuilder.Entity<RolePermissionModule>(x =>
+
+            modelBuilder.Entity<Vendor>(e =>
+
             {
-                x.HasOne(rpm => rpm.Role)
-                    .WithMany()
-                    .HasForeignKey(rpm => rpm.RoleId)
+                e.HasOne(v => v.VendorCategory)
+                    .WithMany(vc => vc.Vendors)
+                    .HasForeignKey(v => v.VendorCategoryId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(rpm => rpm.Permission)
-                    .WithMany()
-                    .HasForeignKey(rpm => rpm.PermissionId)
+                e.HasOne(v => v.Company)
+                    .WithMany(c => c.Vendors)
+                    .HasForeignKey(v => v.CompanyId)
                     .OnDelete(DeleteBehavior.Restrict);
+
 
                 modelBuilder.Entity<VendorCategory>()
                     .HasOne(vc => vc.CreatedByUser)
                     .WithMany(u => u.VendorCategoriesCreated)
+                    .HasForeignKey(vc => vc.CreatedBy);
+
+                e.HasOne(v => v.CreatedByUser)
+                    .WithMany(u => u.VendorsCreated)
+                    .HasForeignKey(v => v.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(v => v.ModifiedByUser)
+                    .WithMany(u => u.VendorsModified)
+                    .HasForeignKey(v => v.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            }));
+
+
+            // ===================================================== 
+            // VENDOR CATEGORY 
+            // ===================================================== 
+
+            modelBuilder.Entity<VendorCategory>(e =>
+            {
+                e.HasOne(vc => vc.CreatedByUser)
+                    .WithMany(u => u.VendorCategoriesCreated)
                     .HasForeignKey(vc => vc.CreatedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                modelBuilder.Entity<VendorCategory>()
-                    .HasOne(vc => vc.ModifiedByUser)
+                e.HasOne(vc => vc.ModifiedByUser)
                     .WithMany(u => u.VendorCategoriesModified)
                     .HasForeignKey(vc => vc.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
+
 
 
 
@@ -704,155 +702,671 @@ namespace Fincore_Project.Data
             });
 
 
-     // =====================================================
-       // MODULE 3 - BUDGET / CAPEX / OPEX / EXPENSE
-     // =====================================================
+            // ===================================================== 
+            // PURCHASE REQUISITION ITEM 
+            // ===================================================== 
 
-            // =====================================================
-            // BUDGET
-            // =====================================================
-
-            modelBuilder.Entity<Budget>(x =>
+            modelBuilder.Entity<PurchaseRequisitionItem>(e =>
             {
-                x.HasOne(b => b.CreatedByUser)
-                    .WithMany()
-                    .HasForeignKey(b => b.CreatedBy)
+                e.HasOne(x => x.VendorCategory)
+                    .WithMany(vc => vc.PurchaseRequisitionItems)
+                    .HasForeignKey(x => x.CategoryId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(b => b.ModifiedByUser)
-                    .WithMany()
-                    .HasForeignKey(b => b.ModifiedBy)
+                e.HasOne(x => x.PurchaseRequisition)
+                    .WithMany(x => x.PurchaseRequisitionItems)
+                    .HasForeignKey(x => x.PurchaseRequisitionId)
+                    .OnDelete(DeleteBehavior.Cascade);
+            });
+
+
+            // ===================================================== 
+            // VENDOR DOCUMENT 
+            // ===================================================== 
+
+            modelBuilder.Entity<VendorDocument>(e =>
+            {
+                e.HasOne(x => x.DocumentType)
+                    .WithMany(dt => dt.VendorDocuments)
+                    .HasForeignKey(x => x.DocumentTypeId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
 
-            // =====================================================
-            // BUDGET CATEGORY
-            // =====================================================
+            // ===================================================== 
+            // DOCUMENT TYPE 
+            // ===================================================== 
 
-            modelBuilder.Entity<BudgetCategory>(x =>
+            modelBuilder.Entity<DocumentType>(e =>
             {
-                x.HasOne(bc => bc.Department)
+                e.HasOne(x => x.CreatedByUser)
                     .WithMany()
-                    .HasForeignKey(bc => bc.DepartmentId)
+                    .HasForeignKey(x => x.CreatedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(bc => bc.CreatedByUser)
+                e.HasOne(x => x.ModifiedByUser)
                     .WithMany()
-                    .HasForeignKey(bc => bc.CreatedBy)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                x.HasOne(bc => bc.ModifiedByUser)
-                    .WithMany()
-                    .HasForeignKey(bc => bc.ModifiedBy)
+                    .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
 
-            // =====================================================
-            // BUDGET LINE
-            // =====================================================
+            // ===================================================== 
+            // PURCHASE REQUISITION 
+            // ===================================================== 
 
-            modelBuilder.Entity<BudgetLine>(x =>
+            modelBuilder.Entity<PurchaseRequisition>(e =>
             {
-                x.HasOne(bl => bl.Budget)
-                    .WithMany(b => b.BudgetLines)
-                    .HasForeignKey(bl => bl.BudgetId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                x.HasOne(bl => bl.BudgetCategory)
-                    .WithMany(bc => bc.BudgetLines)
-                    .HasForeignKey(bl => bl.BudgetCategoryId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                x.HasOne(bl => bl.CreatedByUser)
+                e.HasOne(x => x.RequestedByUser)
                     .WithMany()
-                    .HasForeignKey(bl => bl.CreatedBy)
+                    .HasForeignKey(x => x.RequestedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(bl => bl.ModifiedByUser)
+                e.HasOne(x => x.ApprovedByUser)
                     .WithMany()
-                    .HasForeignKey(bl => bl.ModifiedBy)
+                    .HasForeignKey(x => x.ApprovedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
 
-            // =====================================================
-            // CAPEX REQUEST
-            // =====================================================
+            // ===================================================== 
+            // RFQ 
+            // ===================================================== 
 
-            modelBuilder.Entity<CapexRequest>(x =>
+            modelBuilder.Entity<RFQ>(e =>
             {
-                x.HasOne(c => c.Department)
-                    .WithMany()
-                    .HasForeignKey(c => c.DepartmentId)
+                e.HasOne(x => x.PurchaseRequisition)
+                    .WithMany(x => x.RFQs)
+                    .HasForeignKey(x => x.PurchaseRequisitionId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // RFQ VENDOR 
+            // ===================================================== 
+
+            modelBuilder.Entity<RFQVendor>(e =>
+            {
+                e.HasOne(x => x.RFQ)
+                    .WithMany(x => x.RFQVendors)
+                    .HasForeignKey(x => x.RFQId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                e.HasOne(x => x.Vendor)
+                    .WithMany(x => x.RFQVendors)
+                    .HasForeignKey(x => x.VendorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // VENDOR SELECTION 
+            // ===================================================== 
+
+            modelBuilder.Entity<VendorSelection>(e =>
+            {
+                e.HasOne(x => x.RFQ)
+                    .WithMany(x => x.VendorSelections)
+                    .HasForeignKey(x => x.RFQId)
+                    .OnDelete(DeleteBehavior.Cascade);
+
+                e.HasOne(x => x.Quotation)
+                    .WithMany(x => x.VendorSelections)
+                    .HasForeignKey(x => x.QuotationId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(c => c.BudgetLine)
-                    .WithMany(bl => bl.CapexRequests)
-                    .HasForeignKey(c => c.BudgetLineId)
+                e.HasOne(x => x.SelectedVendor)
+                    .WithMany(x => x.VendorSelections)
+                    .HasForeignKey(x => x.SelectedVendorId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(c => c.RequestedByUser)
+                e.HasOne(x => x.SelectedByUser)
                     .WithMany()
-                    .HasForeignKey(c => c.RequestedBy)
+                    .HasForeignKey(x => x.SelectedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // PURCHASE ORDER 
+            // ===================================================== 
+
+            modelBuilder.Entity<PurchaseOrder>(e =>
+            {
+                e.HasOne(x => x.PurchaseRequisition)
+                    .WithMany(x => x.PurchaseOrders)
+                    .HasForeignKey(x => x.PurchaseRequisitionId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(c => c.ApprovedByUser)
+                e.HasOne(x => x.Quotation)
+                    .WithMany(x => x.PurchaseOrders)
+                    .HasForeignKey(x => x.QuotationId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.RequestedByUser)
                     .WithMany()
-                    .HasForeignKey(c => c.ApprovedBy)
+                    .HasForeignKey(x => x.RequestedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ApprovedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ApprovedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // PURCHASE ORDER ITEM 
+            // ===================================================== 
+
+            modelBuilder.Entity<PurchaseOrderItem>(e =>
+            {
+                e.HasOne(x => x.PurchaseRequisitionItem)
+                    .WithMany(x => x.PurchaseOrderItems)
+                    .HasForeignKey(x => x.PRItemId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // GRN 
+            // ===================================================== 
+
+            modelBuilder.Entity<GRN>(e =>
+            {
+                e.HasOne(x => x.PurchaseOrder)
+                    .WithMany(x => x.GRNs)
+                    .HasForeignKey(x => x.POId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Vendor)
+                    .WithMany(x => x.GRNs)
+                    .HasForeignKey(x => x.VendorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ReceivedByUser)
+                    .WithMany(u => u.GRNsReceived)
+                    .HasForeignKey(x => x.ReceivedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.QualityCheckedByUser)
+                    .WithMany(u => u.GRNsQualityChecked)
+                    .HasForeignKey(x => x.QualityCheckedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // WORK ORDER 
+            // ===================================================== 
+
+            modelBuilder.Entity<WorkOrder>(e =>
+            {
+                e.HasOne(x => x.OpexRequest)
+                    .WithMany(x => x.WorkOrders)
+                    .HasForeignKey(x => x.OpexRequestId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Vendor)
+                    .WithMany(v => v.WorkOrders)
+                    .HasForeignKey(x => x.VendorId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany(u => u.WorkOrdersCreated)
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // USER / ROLE 
+            // ===================================================== 
+
+            modelBuilder.Entity<User>(e =>
+            {
+                e.HasOne(x => x.Role)
+                    .WithMany()
+                    .HasForeignKey(x => x.RoleId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // ROLE PERMISSION MODULE 
+            // ===================================================== 
+
+            modelBuilder.Entity<RolePermissionModule>(e =>
+            {
+                e.HasOne(x => x.Role)
+                    .WithMany()
+                    .HasForeignKey(x => x.RoleId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Permission)
+                    .WithMany()
+                    .HasForeignKey(x => x.PermissionId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // ORGANIZATION 
+            // ===================================================== 
+
+            modelBuilder.Entity<Country>(e =>
+            {
+                e.HasOne(x => x.Currency)
+                    .WithMany(x => x.Countries)
+                    .HasForeignKey(x => x.CurrencyId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<State>(e =>
+            {
+                e.HasOne(x => x.Country)
+                    .WithMany(x => x.States)
+                    .HasForeignKey(x => x.CountryId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<City>(e =>
+            {
+                e.HasOne(x => x.State)
+                    .WithMany(x => x.Cities)
+                    .HasForeignKey(x => x.StateId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<Company>(e =>
+            {
+                e.HasOne(x => x.Country)
+                    .WithMany(x => x.Companies)
+                    .HasForeignKey(x => x.CountryId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.MasterType)
+                    .WithMany(x => x.Companies)
+                    .HasForeignKey(x => x.MasterTypeId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<Department>(e =>
+            {
+                e.HasOne(x => x.Company)
+                    .WithMany(x => x.Departments)
+                    .HasForeignKey(x => x.CompanyId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.MasterType)
+                    .WithMany(x => x.Departments)
+                    .HasForeignKey(x => x.MasterTypeId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<Branch>(e =>
+            {
+                e.HasOne(x => x.Company)
+                    .WithMany()
+                    .HasForeignKey(x => x.CompanyId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<CostCenter>(e =>
+            {
+                e.HasOne(x => x.Company)
+                    .WithMany()
+                    .HasForeignKey(x => x.CompanyId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Department)
+                    .WithMany()
+                    .HasForeignKey(x => x.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            modelBuilder.Entity<ProfitCenter>(e =>
+            {
+                e.HasOne(x => x.Company)
+                    .WithMany()
+                    .HasForeignKey(x => x.CompanyId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Department)
+                    .WithMany()
+                    .HasForeignKey(x => x.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // EMPLOYEE 
+            // ===================================================== 
+
+            modelBuilder.Entity<Employee>(e =>
+            {
+                e.HasOne(x => x.User)
+                    .WithMany()
+                    .HasForeignKey(x => x.UserId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Role)
+                    .WithMany()
+                    .HasForeignKey(x => x.RoleId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Department)
+                    .WithMany()
+                    .HasForeignKey(x => x.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Company)
+                    .WithMany(x => x.Employees)
+                    .HasForeignKey(x => x.CompanyId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ReportingManagerEmployee)
+                    .WithMany()
+                    .HasForeignKey(x => x.ReportingManager)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // BUDGET 
+            // ===================================================== 
+
+            modelBuilder.Entity<Budget>(e =>
+            {
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // BUDGET CATEGORY 
+            // ===================================================== 
+
+            modelBuilder.Entity<BudgetCategory>(e =>
+            {
+                e.HasOne(x => x.Department)
+                    .WithMany()
+                    .HasForeignKey(x => x.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // BUDGET LINE 
+            // ===================================================== 
+
+            modelBuilder.Entity<BudgetLine>(e =>
+            {
+                e.HasOne(x => x.Budget)
+                    .WithMany(x => x.BudgetLines)
+                    .HasForeignKey(x => x.BudgetId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.BudgetCategory)
+                    .WithMany(x => x.BudgetLines)
+                    .HasForeignKey(x => x.BudgetCategoryId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // CAPEX REQUEST 
+            // ===================================================== 
+
+            modelBuilder.Entity<CapexRequest>(e =>
+            {
+                e.HasOne(x => x.Department)
+                    .WithMany()
+                    .HasForeignKey(x => x.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.BudgetLine)
+                    .WithMany(x => x.CapexRequests)
+                    .HasForeignKey(x => x.BudgetLineId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.RequestedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.RequestedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ApprovedByUser)
+                    .WithMany()
+                    .HasForeignKey(x => x.ApprovedBy)
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
 
-            // =====================================================
-            // OPEX REQUEST
-            // =====================================================
+            // ===================================================== 
+            // OPEX REQUEST 
+            // ===================================================== 
 
-            modelBuilder.Entity<OpexRequest>(x =>
+            modelBuilder.Entity<OpexRequest>(e =>
             {
-                x.HasOne(o => o.BudgetLine)
-                    .WithMany(bl => bl.OpexRequests)
-                    .HasForeignKey(o => o.BudgetLineId)
+                e.HasOne(x => x.BudgetLine)
+                    .WithMany(x => x.OpexRequests)
+                    .HasForeignKey(x => x.BudgetLineId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(o => o.RequestedByUser)
+                e.HasOne(x => x.RequestedByUser)
                     .WithMany()
-                    .HasForeignKey(o => o.RequestedBy)
+                    .HasForeignKey(x => x.RequestedBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(o => o.ApprovedByUser)
+                e.HasOne(x => x.ApprovedByUser)
                     .WithMany()
-                    .HasForeignKey(o => o.ApprovedBy)
+                    .HasForeignKey(x => x.ApprovedBy)
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
 
-            // =====================================================
-            // EXPENSE CLAIM
-            // =====================================================
+            // ===================================================== 
+            // EXPENSE CLAIM 
+            // ===================================================== 
 
-            modelBuilder.Entity<ExpenseClaim>(x =>
+            modelBuilder.Entity<ExpenseClaim>(e =>
             {
-                x.HasOne(ec => ec.OpexRequest)
-                    .WithMany(o => o.ExpenseClaims)
-                    .HasForeignKey(ec => ec.OpexRequestId)
+                e.HasOne(x => x.OpexRequest)
+                    .WithMany(x => x.ExpenseClaims)
+                    .HasForeignKey(x => x.OpexRequestId)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(ec => ec.ClaimByUser)
+                e.HasOne(x => x.ClaimByUser)
                     .WithMany()
-                    .HasForeignKey(ec => ec.ClaimBy)
+                    .HasForeignKey(x => x.ClaimBy)
                     .OnDelete(DeleteBehavior.Restrict);
 
-                x.HasOne(ec => ec.ApprovedByUser)
+                e.HasOne(x => x.ApprovedByUser)
                     .WithMany()
-                    .HasForeignKey(ec => ec.ApprovedBy)
+                    .HasForeignKey(x => x.ApprovedBy)
                     .IsRequired(false)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // REVENUE ENTRY 
+            // ===================================================== 
+
+            modelBuilder.Entity<RevenueEntry>(e =>
+            {
+                e.HasOne(x => x.Department)
+                    .WithMany(x => x.RevenueEntry)
+                    .HasForeignKey(x => x.DepartmentId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.AccountMaster)
+                    .WithMany(x => x.RevenueEntries)
+                    .HasForeignKey(x => x.AccountId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.Customer)
+                    .WithMany(x => x.RevenueEntries)
+                    .HasForeignKey(x => x.CustomerId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany(x => x.RevenueEntriesCreated)
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany(x => x.RevenueEntriesModified)
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // AR INVOICE 
+            // ===================================================== 
+
+            modelBuilder.Entity<ARInvoice>(e =>
+            {
+                e.HasOne(x => x.Customer)
+                    .WithMany(x => x.ARInvoices)
+                    .HasForeignKey(x => x.CustomerId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.RevenueEntry)
+                    .WithMany(x => x.ARInvoices)
+                    .HasForeignKey(x => x.RevenueEntryId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany(x => x.ARInvoicesCreated)
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany(x => x.ARInvoicesModified)
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // ACCOUNT MASTER 
+            // ===================================================== 
+
+            modelBuilder.Entity<AccountMaster>(e =>
+            {
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany(x => x.AccountMastersCreated)
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany(x => x.AccountMastersModified)
+                    .HasForeignKey(x => x.ModifiedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+            });
+
+
+            // ===================================================== 
+            // JOURNAL ENTRY 
+            // ===================================================== 
+
+            modelBuilder.Entity<JournalEntry>(e =>
+            {
+                e.HasOne(x => x.AccountMaster)
+                    .WithMany(x => x.JournalEntries)
+                    .HasForeignKey(x => x.AccountId)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.CreatedByUser)
+                    .WithMany(x => x.JournalEntriesCreated)
+                    .HasForeignKey(x => x.CreatedBy)
+                    .OnDelete(DeleteBehavior.Restrict);
+
+                e.HasOne(x => x.ModifiedByUser)
+                    .WithMany(x => x.JournalEntriesModified)
+                    .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
             });
         }
-
     }
 }
+

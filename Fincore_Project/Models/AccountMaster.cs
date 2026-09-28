@@ -3,38 +3,41 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Fincore_Project.Models
 {
-    public class VendorCategory
+    public class AccountMaster
     {
         [Key]
-        public int VendorCategoryId { get; set; }
+        public int AccountId { get; set; }
 
         [Required]
         [StringLength(30)]
-        public string CategoryName { get; set; }
-
-        [StringLength(200)]
-        public string Description { get; set; }
+        public string AccountCode { get; set; }
 
         [Required]
+        public string AccountName { get; set; }
+
+        [Required]
+        public string AccountType { get; set; }
+
         public byte IsActive { get; set; }
 
-        public DateTime? CreatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
+
         public DateTime? ModifiedAt { get; set; }
 
-        [Required]
+        
         [ForeignKey("CreatedByUser")]
         public int CreatedBy { get; set; }
         public User CreatedByUser { get; set; }
 
-        [Required]
+
         [ForeignKey("ModifiedByUser")]
         public int ModifiedBy { get; set; }
         public User ModifiedByUser { get; set; }
 
-        public List<Vendor> Vendors { get; set; }
-        public List<PurchaseRequisitionItem> PurchaseRequisitionItems { get; set; }
-        
+        //Navigation 
 
-
+        public List<RevenueEntry> RevenueEntries { get; set; }
+        public List<JournalEntry> JournalEntries { get; set; }
     }
 }
+
