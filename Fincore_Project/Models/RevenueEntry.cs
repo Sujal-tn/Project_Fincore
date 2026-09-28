@@ -7,7 +7,6 @@ namespace Fincore_Project.Models
     {
         [Key]
         public int RevenueEntryId { get; set; }
-
         [StringLength(50)]
         public string InvoiceNumber { get; set; }
 
@@ -53,6 +52,7 @@ namespace Fincore_Project.Models
 
 
         //Navigation
+
         public List<ARInvoice> ARInvoices { get; set; }
     }
 }

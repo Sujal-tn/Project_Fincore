@@ -46,6 +46,7 @@ namespace Fincore_Project.Models
 
         public User ModifiedByUser { get; set; }
 
+
         //Navigation
         public List<RevenueEntry> RevenueEntry {  get; set; }
 
