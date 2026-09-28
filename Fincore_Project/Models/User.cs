@@ -9,11 +9,11 @@ namespace Fincore_Project.Models
         [Key]
         public int UserId { get; set; }
 
-        [Required]
+     
         [ForeignKey("Role")]
-        public int RoleId { get; set; }
+        public int? RoleId { get; set; } 
 
-        public Role Role { get; set; }
+        public Role? Roles { get; set; } 
 
         [Required]
         [StringLength(50)]
@@ -32,9 +32,9 @@ namespace Fincore_Project.Models
 
         public DateTime? LastLogin { get; set; }
 
-        public string UserCategory { get; set; }
+        public string? UserCategory { get; set; }
 
-        public string RefreshToken { get; set; }
+        public string? RefreshToken { get; set; }
 
         [Required]
         public byte IsActive { get; set; }

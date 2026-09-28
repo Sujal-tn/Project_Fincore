@@ -19,5 +19,7 @@ namespace Fincore_Project.Models
         public DateTime? CreatedAt { get; set; }
 
         public DateTime? ModifiedAt { get; set; }
+
+        public List<User> Users { get; set; }
     }
 }

@@ -67,11 +67,6 @@ namespace Fincore_Project.Data
         {
             base.OnModelCreating(modelBuilder);
 
-
-            // ===================================================== 
-            // ASSET 
-            // ===================================================== 
-
             modelBuilder.Entity<Asset>(e =>
             {
                 e.HasOne(x => x.Vendor)
@@ -104,11 +99,6 @@ namespace Fincore_Project.Data
                     .IsRequired(false)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-
-
-            // ===================================================== 
-            // AP INVOICE 
-            // ===================================================== 
 
             modelBuilder.Entity<APInvoice>(e =>
             {
@@ -143,11 +133,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // PAYMENT 
-            // ===================================================== 
-
             modelBuilder.Entity<Payment>(e =>
             {
                 e.HasOne(x => x.APInvoice)
@@ -181,11 +166,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // VENDOR 
-            // ===================================================== 
-
             modelBuilder.Entity<Vendor>(e =>
             {
                 e.HasOne(v => v.VendorCategory)
@@ -210,10 +190,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // VENDOR CATEGORY 
-            // ===================================================== 
-
             modelBuilder.Entity<VendorCategory>(e =>
             {
                 e.HasOne(vc => vc.CreatedByUser)
@@ -227,10 +203,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // PURCHASE REQUISITION ITEM 
-            // ===================================================== 
 
             modelBuilder.Entity<PurchaseRequisitionItem>(e =>
             {
@@ -246,10 +218,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // VENDOR DOCUMENT 
-            // ===================================================== 
-
             modelBuilder.Entity<VendorDocument>(e =>
             {
                 e.HasOne(x => x.DocumentType)
@@ -258,10 +226,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // DOCUMENT TYPE 
-            // ===================================================== 
 
             modelBuilder.Entity<DocumentType>(e =>
             {
@@ -276,10 +240,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // PURCHASE REQUISITION 
-            // ===================================================== 
 
             modelBuilder.Entity<PurchaseRequisition>(e =>
             {
@@ -305,10 +265,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // RFQ 
-            // ===================================================== 
-
             modelBuilder.Entity<RFQ>(e =>
             {
                 e.HasOne(x => x.PurchaseRequisition)
@@ -317,10 +273,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // RFQ VENDOR 
-            // ===================================================== 
 
             modelBuilder.Entity<RFQVendor>(e =>
             {
@@ -334,11 +286,6 @@ namespace Fincore_Project.Data
                     .HasForeignKey(x => x.VendorId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-
-
-            // ===================================================== 
-            // VENDOR SELECTION 
-            // ===================================================== 
 
             modelBuilder.Entity<VendorSelection>(e =>
             {
@@ -363,10 +310,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // PURCHASE ORDER 
-            // ===================================================== 
 
             modelBuilder.Entity<PurchaseOrder>(e =>
             {
@@ -402,10 +345,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // PURCHASE ORDER ITEM 
-            // ===================================================== 
-
             modelBuilder.Entity<PurchaseOrderItem>(e =>
             {
                 e.HasOne(x => x.PurchaseRequisitionItem)
@@ -414,10 +353,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // GRN 
-            // ===================================================== 
 
             modelBuilder.Entity<GRN>(e =>
             {
@@ -443,10 +378,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // WORK ORDER 
-            // ===================================================== 
-
             modelBuilder.Entity<WorkOrder>(e =>
             {
                 e.HasOne(x => x.OpexRequest)
@@ -466,22 +397,14 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // USER / ROLE 
-            // ===================================================== 
-
             modelBuilder.Entity<User>(e =>
             {
-                e.HasOne(x => x.Role)
+                e.HasOne(x => x.Roles)
                     .WithMany()
                     .HasForeignKey(x => x.RoleId)
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // ROLE PERMISSION MODULE 
-            // ===================================================== 
 
             modelBuilder.Entity<RolePermissionModule>(e =>
             {
@@ -497,9 +420,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // ORGANIZATION 
-            // ===================================================== 
 
             modelBuilder.Entity<Country>(e =>
             {
@@ -603,10 +523,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // EMPLOYEE 
-            // ===================================================== 
-
             modelBuilder.Entity<Employee>(e =>
             {
                 e.HasOne(x => x.User)
@@ -645,11 +561,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // BUDGET 
-            // ===================================================== 
-
             modelBuilder.Entity<Budget>(e =>
             {
                 e.HasOne(x => x.CreatedByUser)
@@ -664,9 +575,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // BUDGET CATEGORY 
-            // ===================================================== 
 
             modelBuilder.Entity<BudgetCategory>(e =>
             {
@@ -686,10 +594,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // BUDGET LINE 
-            // ===================================================== 
 
             modelBuilder.Entity<BudgetLine>(e =>
             {
@@ -714,10 +618,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // CAPEX REQUEST 
-            // ===================================================== 
 
             modelBuilder.Entity<CapexRequest>(e =>
             {
@@ -744,10 +644,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // OPEX REQUEST 
-            // ===================================================== 
-
             modelBuilder.Entity<OpexRequest>(e =>
             {
                 e.HasOne(x => x.BudgetLine)
@@ -768,10 +664,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // EXPENSE CLAIM 
-            // ===================================================== 
-
             modelBuilder.Entity<ExpenseClaim>(e =>
             {
                 e.HasOne(x => x.OpexRequest)
@@ -791,10 +683,6 @@ namespace Fincore_Project.Data
                     .OnDelete(DeleteBehavior.Restrict);
             });
 
-
-            // ===================================================== 
-            // REVENUE ENTRY 
-            // ===================================================== 
 
             modelBuilder.Entity<RevenueEntry>(e =>
             {
@@ -825,10 +713,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // AR INVOICE 
-            // ===================================================== 
-
             modelBuilder.Entity<ARInvoice>(e =>
             {
                 e.HasOne(x => x.Customer)
@@ -853,10 +737,6 @@ namespace Fincore_Project.Data
             });
 
 
-            // ===================================================== 
-            // ACCOUNT MASTER 
-            // ===================================================== 
-
             modelBuilder.Entity<AccountMaster>(e =>
             {
                 e.HasOne(x => x.CreatedByUser)
@@ -869,11 +749,6 @@ namespace Fincore_Project.Data
                     .HasForeignKey(x => x.ModifiedBy)
                     .OnDelete(DeleteBehavior.Restrict);
             });
-
-
-            // ===================================================== 
-            // JOURNAL ENTRY 
-            // ===================================================== 
 
             modelBuilder.Entity<JournalEntry>(e =>
             {

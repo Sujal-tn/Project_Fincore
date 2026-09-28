@@ -1,0 +1,127 @@
+﻿@{
+    var rolename = Context.Session.GetString("RoleName");
+}
+
+<div class="bg-dark text-white p-3" style="width:250px; min-height:100vh;">
+
+    <h4 class="mb-4">FINCORE ERP</h4>
+
+    <ul class="nav flex-column">
+
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+                Dashboard
+            </a>
+        </li>
+
+        @if (rolename == "Admin")
+        {
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Users
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Roles
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Organization
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Budget
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    CAPEX
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    OPEX
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Vendors
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Purchase Orders
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Reports
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Audit Logs
+                </a>
+            </li>
+        }
+
+        @if (rolename == "Vendor")
+        {
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Vendors
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Purchase Requisition
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    RFQ
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Purchase Orders
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Work Orders
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    GRN
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">
+                    Payments
+                </a>
+            </li>
+        }
+
+    </ul>
+
+</div>
