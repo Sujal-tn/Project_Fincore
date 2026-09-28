@@ -5,19 +5,12 @@ namespace Fincore_Project.Models
 {
     public class Customer
     {
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
         [Key]
         public int CustomerId { get; set; }
 
         public List<RevenueEntry> RevenueEntries {  get; set; }
 
         public List<ARInvoice> ARInvoices { get; set; }
-<<<<<<< HEAD
-        public List<Payment> Payments { get; set; }
        
 
         [Required]
@@ -36,10 +29,8 @@ namespace Fincore_Project.Models
 
         [Required]
         public byte IsActive { get; set; }
-=======
 
         //Navigation
         public List<Payment> Payments { get; set; }
->>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
     }
 }

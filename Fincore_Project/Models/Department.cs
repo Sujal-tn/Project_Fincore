@@ -45,14 +45,11 @@ namespace Fincore_Project.Models
         public int ModifiedBy { get; set; }
 
         public User ModifiedByUser { get; set; }
-<<<<<<< HEAD
-        public List<RevenueEntry> RevenueEntry {  get; set; }
-=======
+
 
         //Navigation
         public List<RevenueEntry> RevenueEntry {  get; set; }
 
->>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
         public List<Asset> Assets { get; set; }
     }
 }

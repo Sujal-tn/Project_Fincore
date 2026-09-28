@@ -1,8 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-<<<<<<< HEAD
-=======
 using System.ComponentModel.DataAnnotations.Schema;
->>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
 
 namespace Fincore_Project.Models
 {
@@ -10,9 +7,6 @@ namespace Fincore_Project.Models
     {
         [Key]
         public int RevenueEntryId { get; set; }
-
-<<<<<<< HEAD
-=======
         [StringLength(50)]
         public string InvoiceNumber { get; set; }
 
@@ -58,7 +52,7 @@ namespace Fincore_Project.Models
 
 
         //Navigation
->>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
+
         public List<ARInvoice> ARInvoices { get; set; }
     }
 }
