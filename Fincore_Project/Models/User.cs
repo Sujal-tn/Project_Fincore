@@ -53,5 +53,27 @@ namespace Fincore_Project.Models
         public List<AccountMaster> AccountMastersModified { get; set; }
         public List<JournalEntry> JournalEntriesCreated { get; set; }
         public List<JournalEntry> JournalEntriesModified { get; set; }
+
+        public List<Vendor> VendorsCreated { get; set; }
+        public List<Vendor> VendorsModified { get; set; }
+        public List<DocumentType> DocumentTypesCreated { get; set; }
+        public List<DocumentType> DocumentTypesModified { get; set; }
+
+        public List<VendorCategory> VendorCategoriesCreated { get; set; }
+        public List<VendorCategory> VendorCategoriesModified { get; set; }
+        public List<PurchaseRequisition> PurchaseRequisitionsRequested { get; set; }
+        public List<PurchaseRequisition> PurchaseRequisitionsApproved { get; set; }
+        public List<PurchaseRequisition> PurchaseRequisitionsCreated { get; set; }
+        public List<PurchaseRequisition> PurchaseRequisitionsModified { get; set; }
+        public List<PurchaseOrder> PurchaseOrdersRequested { get; set; }
+        public List<PurchaseOrder> PurchaseOrdersApproved { get; set; }
+        public List<PurchaseOrder> PurchaseOrdersCreated { get; set; }
+        public List<PurchaseOrder> PurchaseOrdersModified { get; set; }
+        public List<GRN> GRNsReceived { get; set; }
+        public List<GRN> GRNsQualityChecked { get; set; }
+
+        public List<WorkOrder> WorkOrdersCreated { get; set; }
+        public List<VendorSelection> VendorSelectionsSelected { get; set; }
+
     }
 }
