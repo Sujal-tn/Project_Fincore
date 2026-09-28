@@ -9,7 +9,7 @@ namespace Fincore_Project.Data
             : base(options)
         {
         }
-        public DbSet<ARInvoice> ARInvoices { get; set; } = null!;
+        public DbSet<ARInvoice> ARInvoices { get; set; } 
         public DbSet<RevenueEntry> RevenueEntries { get; set; } = null!;
         public DbSet<AccountMaster> AccountMasters { get; set; } = null!;
         public DbSet<JournalEntry> JournalEntries { get; set; } = null!;
@@ -20,6 +20,8 @@ namespace Fincore_Project.Data
         public DbSet<Module> Modules { get; set; } = null!;
         public DbSet<RolePermissionModule> RolePermissionModules { get; set; } = null!;
         public DbSet<Asset> Assets { get; set; }
+        public DbSet<APInvoice> Invoices { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public DbSet<Currency> Currencies { get; set; } = null!;
         public DbSet<Country> Countries { get; set; } = null!;
@@ -677,24 +679,16 @@ namespace Fincore_Project.Data
             modelBuilder.Entity<ARInvoice>(e =>
             {
                 e.HasOne(x => x.Customer)
-                    .WithMany(x => x.ARInvoices)
-                    .HasForeignKey(x => x.CustomerId)
-                    .OnDelete(DeleteBehavior.Restrict);
+     .WithMany(c => c.ARInvoices)
+     .HasForeignKey(x => x.CustomerId)
+     .IsRequired()
+     .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.RevenueEntry)
-                    .WithMany(x => x.ARInvoices)
-                    .HasForeignKey(x => x.RevenueEntryId)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                e.HasOne(x => x.CreatedByUser)
-                    .WithMany(x => x.ARInvoicesCreated)
-                    .HasForeignKey(x => x.CreatedBy)
-                    .OnDelete(DeleteBehavior.Restrict);
-
-                e.HasOne(x => x.ModifiedByUser)
-                    .WithMany(x => x.ARInvoicesModified)
-                    .HasForeignKey(x => x.ModifiedBy)
-                    .OnDelete(DeleteBehavior.Restrict);
+                 .WithMany(r => r.ARInvoices)
+                 .HasForeignKey(x => x.RevenueEntryId)
+                 .IsRequired(false)
+                 .OnDelete(DeleteBehavior.Restrict);
             });
 
             modelBuilder.Entity<AccountMaster>(e =>

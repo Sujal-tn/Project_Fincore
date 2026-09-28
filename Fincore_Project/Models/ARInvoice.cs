@@ -12,30 +12,24 @@ namespace Fincore_Project.Models
         [StringLength(50)]
         public string InvoiceNumber { get; set; }
 
-
         [Required]
         [ForeignKey("Customer")]
         public int CustomerId { get; set; }
         public Customer Customer { get; set; }
 
+        [Required]
         [ForeignKey("RevenueEntry")]
         public int RevenueEntryId { get; set; }
         public RevenueEntry RevenueEntry { get; set; }
 
-<<<<<<< HEAD
         [Required]
-=======
->>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
         public DateTime InvoiceDate { get; set; }
 
         [Required]
         public DateTime DueDate { get; set; }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
-        [Column(TypeName = "decimal(18, 2)")]
+        [Required]
+        [Column(TypeName = "decimal(18,2)")]
         public decimal Amount { get; set; }
 
         [Column(TypeName = "decimal(18,2)")]
@@ -44,30 +38,14 @@ namespace Fincore_Project.Models
         [Column(TypeName = "decimal(18,2)")]
         public decimal? AmountOutstanding { get; set; }
 
+        [Required]
         [StringLength(20)]
         public string PaymentStatus { get; set; }
 
-        public DateTime CreatedAt { get; set; }
-
+        public DateTime? CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
 
-
-        [ForeignKey("CreatedByUser")]
-        public int CreatedBy { get; set; }
-        public User CreatedByUser { get; set; }
-
-
-        [ForeignKey("ModifiedByUser")]
-        public int ModifiedBy { get; set; }
-        public User ModifiedByUser { get; set; }
-
-<<<<<<< HEAD
         // Navigation Properties
         public List<Payment> Payments { get; set; }
-=======
-        //Navigation
-        public List<Payment> Payments { get; set; }
-
->>>>>>> 3eec8db17ee3802c886a8ecb2c187ff6728f8d2c
     }
 }
