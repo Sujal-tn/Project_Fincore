@@ -11,9 +11,10 @@ namespace Fincore_Project.Controllers
         {
             this.rs= rs;
         }
-        public IActionResult Index()
+        public async  Task<IActionResult> Index()
         {
-            return View();
+            var roles= await rs.GetRoles();
+            return View(roles);
         }
 
         [HttpPost]
@@ -21,6 +22,26 @@ namespace Fincore_Project.Controllers
         {
             await rs.AddRole(r);
             return Json("Role Added Successfully");
+        }
+
+        public async Task<IActionResult> GetRole(int id)
+        {
+            var role= await rs.GetRoleById(id);
+            return Json(role);
+        }
+        [HttpPost]
+        public async Task<IActionResult> EditRole(Role r)
+        {
+            await rs.UpdateRole(r);
+            return Json("Role Updated");
+            //return RedirectToAction("Index");
+
+        }
+
+        public async Task<IActionResult> DelRole(int id)
+        {
+            await rs.DelRole(id);
+            return Json("Role Deleted Successfully");
         }
     }
 }
