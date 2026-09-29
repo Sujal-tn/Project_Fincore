@@ -1,0 +1,62 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Fincore_Project.DTO.RegisterUserDto
+
+<form asp-controller="Auth"
+      asp-action="RegisterUser"
+      method="post">
+
+    <div class="mb-3">
+        <label>Full Name</label>
+        <input asp-for="FullName" class="form-control" />
+        <span asp-validation-for="FullName"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Password</label>
+        <input asp-for="Password"
+               type="password"
+               class="form-control" />
+        <span asp-validation-for="Password"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <input asp-for="Phone" class="form-control" />
+        <span asp-validation-for="Phone"
+              class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label>User Category</label>
+        <input asp-for="UserCategory" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Register
+    </button>
+
+    <div class="mt-3">
+    <span>Already have an account?</span>
+    <a asp-controller="Auth"
+       asp-action="Login">
+        Login
+    </a>
+</div>
+</form>
+
+              @section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
