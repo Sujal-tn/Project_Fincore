@@ -1,15 +1,18 @@
-﻿@model List<VendorCategory>
+﻿@model List<Vendor>
 
-<a id="btn" class="btn btn-primary">Add Vendor Category</a>
+<a id="btn" class="btn btn-primary">Add Vendor</a>
 
 
 <table class="table">
     <thead>
         <tr>
             <th scope="col">ID</th>
-            <th scope="col">Category Name</th>
-            <th scope="col">Description</th>
-            <th scope="col">Status</th>  
+            <th scope="col">Vendor Code</th>
+            <th scope="col">Vendor Category</th>
+            <th scope="col">Company</th>
+            <th scope="col"> Bank Account Number</th>         
+            <th scope="col">PAN Number</th>
+            <th scope="col">Status</th>
             <th scope="col">Action</th>
         </tr>
     </thead>
@@ -17,21 +20,24 @@
 @foreach (var d in Model)
 {
     <tr>
-        <td>@d.VendorCategoryId</td>
-        <td>@d.CategoryName</td>
-        <td>@d.Description</td>
+        <td>@d.VendorId</td>
+        <td>@d.VendorCode</td>
+        <td>@d.VendorCategory?.CategoryName</td>
+        <td>@d.Company?.CompanyName</td>
+        <td>@d.BankAccount</td>
+        <td>@d.PAN</td>
         <td>
             @(d.IsActive == 1 ? "Active" : "Inactive")
         </td>
         <td>
              <button type="button"
-            class="btn btn-sm btn-warning editCategoryBtn"
-            data-id="@d.VendorCategoryId">
+            class="btn btn-sm btn-warning editBtn"
+            data-id="@d.VendorId">
              Edit
              </button>
 
-            <a asp-action="DeleteVendorCategory"
-               asp-route-id="@d.VendorCategoryId"
+            <a asp-action="DeleteVendor"
+               asp-route-id="@d.VendorId"
                onclick="return confirm('Are you sure?')"
                class="btn btn-sm btn-danger">Delete</a>
         </td>
@@ -39,6 +45,7 @@
 }
 </tbody>
 </table>
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -56,28 +63,48 @@
 
             <div class="modal-body">
 
-                <form id="categoryform" method="post">
+                <form id="vendorform" method="post">
 
-                    <input type="hidden"
-                           id="VendorCategoryId"
-                           name="VendorCategoryId" />
+                    <input type="hidden" id="VendorId" name="VendorId" />
 
-                    Category Name
+                    Vendor Code
                     <input type="text"
-                           name="CategoryName"
+                           name="VendorCode"
+                           class="form-control"/>
+
+                     Vendor Category
+                    <select name="VendorCategoryId"
+                            asp-items="ViewBag.Category"
+                            class="form-control">
+                        <option value="">-- Select  Vendor Category --</option>
+                    </select>
+
+                     Company
+                    <select name="CompanyId"
+                            asp-items="ViewBag.Company"
+                            class="form-control">
+                        <option value="">-- Select Company --</option>
+                    </select>
+
+
+                    Bank Account Number
+                    <input type="text"
+                           name="BankAccount"
                            class="form-control" />
 
-                    Descripttion
-                    <input type="text"
-                           name="Description"
+                    PAN Number
+                     <input type="text"
+                           name="PAN"
                            class="form-control" />
+
+
 
                     Status
                     <select class="form-control"
                             name="IsActive">
                         <option value="1">Active</option>
                         <option value="0">InActive</option>
-                           
+
                     </select>
 
                     <input type="submit"
@@ -91,6 +118,8 @@
 
             <div class="modal-footer">
 
+                
+
                 <button type="button"
                         class="btn btn-secondary"
                         data-dismiss="modal"
@@ -103,6 +132,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
