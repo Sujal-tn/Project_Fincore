@@ -35,16 +35,25 @@ namespace Fincore_Project.Service
 
         public async Task<AccountMaster> GetAccountById(int id)
         {
-            var FindData =await data.AccountMasters.Include(x => x.ModifiedByUser).Include(x => x.CreatedByUser).FirstOrDefaultAsync(x => x.AccountId == id);
+            var FindData =await data.AccountMasters.FirstOrDefaultAsync(x => x.AccountId == id);
 
             return FindData;
 
         }
 
-        public async Task<List<AccountMaster>> GetAccounts()
+        public async Task<List<AccountMasterListDTO>> GetAccounts()
         {
-            var AllData = await data.AccountMasters.Include(x => x.ModifiedByUser).Include(x => x.CreatedByUser).ToListAsync();
 
+
+            var AllData = await data.AccountMasters
+                .Select(x => new AccountMasterListDTO
+                {
+                    AccountId = x.AccountId,
+                    AccountCode = x.AccountCode,
+                    AccountName = x.AccountName,
+                    AccountType = x.AccountType,
+                    IsActive = x.IsActive
+                }).ToListAsync();
             return AllData;
         }
 
@@ -54,13 +63,10 @@ namespace Fincore_Project.Service
 
             if (FindData != null)
             {
-                FindData.AccountCode = account.AccountCode;
                 FindData.AccountName = account.AccountName;
                 FindData.AccountType = account.AccountType;
                 FindData.IsActive = account.IsActive;
-                FindData.CreatedAt = account.CreatedAt;
                 FindData.ModifiedAt = account.ModifiedAt;
-                FindData.CreatedBy = account.CreatedBy;
                 FindData.ModifiedBy = account.ModifiedBy;
             }
 

@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("dbconn")));
 
 builder.Services.AddScoped<IRoleService, RoleService>();
+builder.Services.AddScoped<IAccountMasterService, AccountMasterService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,7 +30,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Role}/{action=Index}/{id?}")
+    pattern: "{controller=AccountMaster}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 

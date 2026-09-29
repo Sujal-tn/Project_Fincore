@@ -1,0 +1,123 @@
+﻿
+
+
+<button type="button" class="btn btn-primary" id="openmodal">
+    + Add Account
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="AddModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="formadd">
+                    <label>Account Name</label>
+                    <input class="form-control" type="text" name="AccountName" />
+
+                    <br />
+                    <label>Account Type</label>
+                    <select class="form-control" name="AccountType">
+                        <option value="">Select Account Type</option>
+                        <option value="Asset">Asset</option>
+                        <option value="Liability">Liability</option>
+                        <option value="Equity">Equity</option>
+                        <option value="Revenue">Revenue</option>
+                        <option value="Expense">Expense</option>
+                    </select>
+                    <br />
+
+                    <select class="form-control" name="IsActive">
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+
+                    <br />
+                    <br />
+
+                    <input type="button" class="btn btn-warning" value="Add Account" id="addaccount"/>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Table Display *@
+                        
+<div class="container mt-4">
+
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Account Id</th>
+                <th>Account Code</th>
+                <th>Account Name</th>
+                <th>Account Type</th>
+                <th>Is Active</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="accountdata">
+        </tbody>
+    </table>
+    
+</div>
+
+
+@* Edit Modal *@
+
+<div class="modal fade" id="UpdateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" id="formupdate">
+
+                    <input type="hidden" name="AccountId" id="UpdateAccountId" />
+
+                    <label>Account Name</label>
+                    <input class="form-control" type="text" name="AccountName" id="UpdateAccountName" />
+
+                    <br />
+                    <label>Account Type</label>
+                    <select class="form-control" name="AccountType" id="UpdateAccountType">
+                        <option value="">Select Account Type</option>
+                        <option value="Asset">Asset</option>
+                        <option value="Liability">Liability</option>
+                        <option value="Equity">Equity</option>
+                        <option value="Revenue">Revenue</option>
+                        <option value="Expense">Expense</option>
+                    </select>
+                    <br />
+
+                    <select class="form-control" name="IsActive" id="UpdateIsActive">
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+
+                    <br />
+                    <br />
+
+                    <input type="button" class="btn btn-warning" value="Update Account" id="updateaccount" />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/javascript.js"></script>

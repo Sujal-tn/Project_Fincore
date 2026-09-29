@@ -48,8 +48,8 @@ namespace Fincore_Project.Models
 
      
         [ForeignKey("ModifiedByUser")]
-        public int ModifiedBy { get; set; }
-        public User ModifiedByUser { get; set; }
+        public int? ModifiedBy { get; set; }
+        public User? ModifiedByUser { get; set; }
 
 
         //Navigation
