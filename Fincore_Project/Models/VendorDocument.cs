@@ -36,6 +36,9 @@ namespace Fincore_Project.Models
         [StringLength(100)]
         public string FileType { get; set; }
 
+        [NotMapped]
+        public IFormFile File { get; set; }
+
         public DateTime? CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
 

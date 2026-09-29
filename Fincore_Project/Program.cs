@@ -33,7 +33,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=PR}/{action=AddPR}/{id?}")
+    pattern: "{controller=VendorCategory}/{action=AddVendorCategory}/{id?}")
     .WithStaticAssets();
 
 
