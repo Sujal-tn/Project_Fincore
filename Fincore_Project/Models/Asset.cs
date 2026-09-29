@@ -47,5 +47,15 @@ namespace Fincore_Project.Models
 
         public DateTime? CreatedAt { get; set; }
         public DateTime? ModifiedAt { get; set; }
+
+        public List<AssetAssignment> AssetAssignments { get; set; }
+
+        public List<AssetLocation> AssetLocations { get; set; }
+
+        public List<AssetDepreciation> AssetDepreciations { get; set; }
+
+        public List<AssetDisposal> AssetDisposals { get; set; }
+
+        public List<AssetHistory> AssetHistories { get; set; }
     }
 }
