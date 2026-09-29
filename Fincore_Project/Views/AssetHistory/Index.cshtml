@@ -1,0 +1,84 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Asset History";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Asset History</h4>
+        <button type="button" class="btn btn-primary" id="openHistoryModal">Add History</button>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Asset Id</th>
+                <th>Action</th>
+                <th>Description</th>
+                <th>Previous Status</th>
+                <th>New Status</th>
+                <th>Performed By</th>
+                <th>Action Date</th>
+            </tr>
+        </thead>
+        <tbody id="historydata"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="historyModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Asset History</h5>
+                <button type="button" class="btn-close" id="closeHistoryModal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="historyform">
+                    <div class="mb-3">
+                        <label class="form-label">Asset</label>
+                        <select name="AssetId" class="form-control" asp-items="ViewBag.assets">
+                            <option value="">-- Select Asset --</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Action</label>
+                        <input type="text" name="Action" class="form-control" maxlength="100" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Description</label>
+                        <textarea name="Description" class="form-control" maxlength="500"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Previous Status</label>
+                        <input type="text" name="PreviousStatus" class="form-control" maxlength="50" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">New Status</label>
+                        <input type="text" name="NewStatus" class="form-control" maxlength="50" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Performed By</label>
+                        <select name="PerformedBy" class="form-control" asp-items="ViewBag.users">
+                            <option value="">-- Select User --</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Action Date</label>
+                        <input type="datetime-local" name="ActionDate" class="form-control" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveHistoryBtn" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/javascript.js"></script>

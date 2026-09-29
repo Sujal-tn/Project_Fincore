@@ -9,5 +9,7 @@ namespace Fincore_Project.Interface
         Task UpdateAsset(Asset a);
         Task<List<Asset>> FetchAll();
         Task<Asset> FetchById(int id);
+        Task<List<Vendor>> FetchVendors();
+        Task<List<Department>> FetchDepartments();
     }
 }

@@ -13,6 +13,7 @@ builder.Services.AddScoped<IRoleService, RoleService>();
 builder.Services.AddScoped<IAssetService, AssetService>();
 builder.Services.AddScoped<IVendorCategoryService, VendorCategoryService>();
 builder.Services.AddScoped<IPRService, PRService>();
+builder.Services.AddScoped<IAssetHistoryService, AssetHistoryService>();
 
 var app = builder.Build();
 
@@ -33,7 +34,7 @@ app.MapStaticAssets();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=PR}/{action=AddPR}/{id?}")
+    pattern: "{controller=AssetHistory}/{action=Index}/{id?}")
     .WithStaticAssets();
 
 
