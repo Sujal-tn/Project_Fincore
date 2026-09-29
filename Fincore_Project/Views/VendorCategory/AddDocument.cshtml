@@ -1,0 +1,126 @@
+﻿@model List<VendorDocument>
+
+<a id="btnAddDocument" class="btn btn-primary">Add Vendor Document</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Vendor ID</th>
+            <th scope="col">User Name</th>
+            <th scope="col">Document Type</th>
+            <th scope="col"> File Name</th>
+            <th scope="col">Master Type</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.VendorDocumentId</td>
+                <td>@d.Vendor.VendorCode</td>
+                <td>@d.User.FullName</td>
+                <td>@d.DocumentType.DocumentCategory</td>
+                <td>@d.FileName</td>
+                <td>@d.MasterType.MasterTypeName</td>
+                <td>
+                    <button type="button"
+                            class="btn btn-sm btn-warning editBtn"
+                            data-id="@d.VendorDocumentId">
+                        Edit
+                    </button>
+
+                    <a asp-action="DeleteVendorDocument"
+                       asp-route-id="@d.VendorDocumentId"
+                       onclick="return confirm('Are you sure?')"
+                       class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+
+                <button type="button"
+                        class="close"
+                        data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+
+                <form id="UploadDocumentform" method="post" enctype="multipart/form-data">
+
+                    Vender
+                    <select name="VendorId"
+                            asp-items="ViewBag.Vendors"
+                            class="form-control">
+                        <option value="">-- Select Vendor --</option>
+                    </select>
+
+                    User
+                    <select name="UserId"
+                            asp-items="ViewBag.Users"
+                            class="form-control">
+                        <option value="">-- Select User --</option>
+                    </select>
+
+                    Document Type
+                    <select name="DocumentTypeId"
+                            asp-items="ViewBag.DocumentTypes"
+                            class="form-control">
+                        <option value="">-- Select Document Type --</option>
+                    </select>
+
+                     Master Type
+                    <select name="MasterTypeId"
+                            asp-items="ViewBag.MasterTypes"
+                            class="form-control">
+                        <option value="">-- Select Master Type --</option>
+                    </select>
+
+
+                    Upload File
+                    <input type="file"
+                           name="File"
+                           class="form-control" />
+
+
+
+                    <input type="submit"
+                           value="Save"
+                           id="savebtn"
+                           class="btn btn-primary" />
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                        id="closemodal">
+                    Close
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/javascript.js"></script>
