@@ -24,6 +24,7 @@ builder.Services.AddSession(options =>
 builder.Services.AddScoped<IAssetService, AssetService>();
 builder.Services.AddScoped<IVendorCategoryService, VendorCategoryService>();
 builder.Services.AddScoped<IPRService, PRService>();
+builder.Services.AddScoped<IAssetHistoryService, AssetHistoryService>();
 
 var app = builder.Build();
 

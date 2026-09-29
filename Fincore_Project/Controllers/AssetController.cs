@@ -11,8 +11,10 @@ namespace Fincore_Project.Controllers
         {
             this.ias = ias;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            ViewBag.Vendors = await ias.FetchVendors();
+            ViewBag.Departments = await ias.FetchDepartments();
             return View();
         }
 
@@ -48,5 +50,6 @@ namespace Fincore_Project.Controllers
             await ias.DeleteAsset(id);
             return Json("Asset Deleted Successfully!!");
         }
+        
     }
 }

@@ -20,7 +20,9 @@ namespace Fincore_Project.Data
         public DbSet<Module> Modules { get; set; } = null!;
         public DbSet<RolePermissionModule> RolePermissionModules { get; set; } = null!;
         public DbSet<Asset> Assets { get; set; }
-        public DbSet<APInvoice> Invoices { get; set; }
+        public DbSet<AssetHistory> AssetHistories { get; set; }
+        public DbSet<AssetAssignment> AssetAssignments { get; set; }
+        public DbSet<APInvoice> APInvoices { get; set; }
         public DbSet<Payment> Payments { get; set; }
 
         public DbSet<Currency> Currencies { get; set; } = null!;
@@ -936,16 +938,16 @@ namespace Fincore_Project.Data
             modelBuilder.Entity<ARInvoice>(e =>
             {
                 e.HasOne(x => x.Customer)
-     .WithMany(c => c.ARInvoices)
-     .HasForeignKey(x => x.CustomerId)
-     .IsRequired()
-     .OnDelete(DeleteBehavior.Restrict);
+                    .WithMany(c => c.ARInvoices)
+                    .HasForeignKey(x => x.CustomerId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Restrict);
 
                 e.HasOne(x => x.RevenueEntry)
-                 .WithMany(r => r.ARInvoices)
-                 .HasForeignKey(x => x.RevenueEntryId)
-                 .IsRequired(false)
-                 .OnDelete(DeleteBehavior.Restrict);
+                    .WithMany(r => r.ARInvoices)
+                    .HasForeignKey(x => x.RevenueEntryId)
+                    .IsRequired()
+                    .OnDelete(DeleteBehavior.Restrict);
             });
 
 

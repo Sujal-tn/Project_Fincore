@@ -3,3 +3,84 @@
 *@
 @{
 }
+@{
+    ViewData["Title"] = "Assets";
+}
+
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h4>Assets</h4>
+        <button type="button" class="btn btn-primary" id="openAssetModal">Add Asset</button>
+    </div>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Code</th>
+                <th>Name</th>
+                <th>Vendor Id</th>
+                <th>Department Id</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="assetdata"></tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="assetModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Asset</h5>
+                <button type="button" class="btn-close" id="closeAssetModal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="assetform">
+                    <div class="mb-3">
+                        <label class="form-label">Asset Code</label>
+                        <input type="text" name="AssetCode" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Asset Name</label>
+                        <input type="text" name="AssetName" class="form-control" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Vendor</label>
+                        <select name="VendorId" class="form-control">
+                            <option value="">-- Select Vendor --</option>
+                            @foreach (var v in ViewBag.Vendors)
+                            {
+                                <option value="@v.VendorId">@v.VendorName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Department</label>
+                        <select name="DepartmentId" class="form-control">
+                            <option value="">-- Select Department --</option>
+                            @foreach (var d in ViewBag.Departments)
+                            {
+                                <option value="@d.DepartmentId">@d.DepartmentName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Status</label>
+                        <select name="Status" class="form-control">
+                            <option value="">-- Select Status --</option>
+                            <option value="Active">Active</option>
+                            <option value="Inactive">Inactive</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="saveAssetBtn" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/js/JavaScript.js"></script>

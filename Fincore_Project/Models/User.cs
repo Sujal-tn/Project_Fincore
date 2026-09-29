@@ -74,5 +74,6 @@ namespace Fincore_Project.Models
         public List<WorkOrder> WorkOrdersCreated { get; set; }
         public List<VendorSelection> VendorSelectionsSelected { get; set; }
 
+
     }
 }

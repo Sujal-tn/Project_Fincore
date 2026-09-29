@@ -40,6 +40,18 @@ namespace Fincore_Project.Service
             return ast;
         }
 
+        public async Task<List<Department>> FetchDepartments()
+        {
+            var d = await db.Departments.ToListAsync();
+            return d;
+        }
+
+        public async Task<List<Vendor>> FetchVendors()
+        {
+            var v = await db.Venders.ToListAsync();
+            return v;
+        }
+
         public async Task UpdateAsset(Asset a)
         {
             db.Assets.Update(a);
