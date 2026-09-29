@@ -1,0 +1,53 @@
+﻿@{
+    var userName = Context.Session.GetString("UserName");
+    var firstLetter = !string.IsNullOrEmpty(userName)
+        ? userName.Substring(0, 1).ToUpper()
+        : "U";
+}
+
+<header class="navbar navbar-expand bg-white shadow-sm px-4">
+
+    <div class="container-fluid">
+
+        <div>
+            <h5 class="mb-0">FINCORE ERP</h5>
+        </div>
+
+        <div class="dropdown">
+
+            <button class="btn d-flex align-items-center gap-2"
+                    type="button"
+                    data-bs-toggle="dropdown">
+
+                <span class="rounded-circle bg-dark text-white d-flex align-items-center justify-content-center"
+                      style="width:40px;height:40px;">
+                    @firstLetter
+                </span>
+
+                <span>@userName</span>
+
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-end">
+
+                <li>
+                    <a class="dropdown-item" href="#">
+                        Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a class="dropdown-item"
+                       asp-controller="Auth"
+                       asp-action="Logout">
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</header>
